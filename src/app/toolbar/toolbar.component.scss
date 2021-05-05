@@ -1,0 +1,30 @@
+.toolbar {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+  .toolbar-title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  .menu-btn {
+    background-color: #fff;
+  }
+}
+
+.menu {
+
+}
+
+.menu-email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  padding: 0 16px;
+}
