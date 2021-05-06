@@ -8,11 +8,15 @@ import {Component, OnInit} from '@angular/core';
 export class TrackedAppCardComponent implements OnInit {
 
   menuIsOpen = false;
+  isLoaded = false;
 
   constructor() {
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoaded = true;
+    }, 3000);
   }
 
   menuOpened(): void {
@@ -26,5 +30,4 @@ export class TrackedAppCardComponent implements OnInit {
   cardClicked(): void {
     console.log('open card');
   }
-
 }

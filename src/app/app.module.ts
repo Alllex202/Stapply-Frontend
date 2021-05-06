@@ -14,6 +14,7 @@ import { TrackedAppCardComponent } from './tracked-apps/tracked-app-card/tracked
 import {MatCardModule} from '@angular/material/card';
 import { TrackedAppsListComponent } from './tracked-apps/tracked-apps-list/tracked-apps-list.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { SkeletonLoaderComponent } from './skeleton-loader/skeleton-loader.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ToolbarComponent,
     TrackedAppsComponent,
     TrackedAppCardComponent,
-    TrackedAppsListComponent
+    TrackedAppsListComponent,
+    SkeletonLoaderComponent
   ],
   imports: [
     BrowserModule,

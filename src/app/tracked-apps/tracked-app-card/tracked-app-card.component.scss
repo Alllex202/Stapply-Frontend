@@ -4,6 +4,12 @@
   width: 344px;
   overflow: hidden;
 
+  .skeleton-container{
+    height: 196px;
+    width: 344px;
+    margin: -16px -16px 16px;
+  }
+
   .app-card-image {
     height: 194px;
     object-fit: cover;

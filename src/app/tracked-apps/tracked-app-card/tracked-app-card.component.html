@@ -1,20 +1,50 @@
 <mat-card class="app-card">
-  <img
-    mat-card-image
-    class="app-card-image"
-    src="assets/twitch-screen.webp"
-    alt="twitch screen"
-    (click)="cardClicked()"
+  <div class="skeleton-container" *ngIf="!isLoaded">
+    <app-skeleton-loader
+      [Swidth]="100"
+      [Sheight]="100"
+      [circle]="false"
+      [percent]="true"
+    ></app-skeleton-loader>
+  </div>
+  <img *ngIf="isLoaded"
+       mat-card-image
+       class="app-card-image"
+       src="assets/twitch-screen.webp"
+       alt="twitch screen"
+       (click)="cardClicked()"
   >
 
   <mat-card-header>
     <div mat-card-avatar class="app-card-header-image">
-      <img src="assets/twitch.svg" alt="twitch">
+      <app-skeleton-loader
+        *ngIf="!isLoaded"
+        [Swidth]="100"
+        [Sheight]="100"
+        [circle]="true"
+        [percent]="true"
+      ></app-skeleton-loader>
+      <img *ngIf="isLoaded" src="assets/twitch.svg" alt="twitch">
     </div>
-    <mat-card-title>Twitch</mat-card-title>
-    <mat-card-subtitle>Twitch Interactive, Inc.</mat-card-subtitle>
+    <mat-card-title>
+      <app-skeleton-loader
+        *ngIf="!isLoaded"
+        [Swidth]="90"
+        [Sheight]="24"
+      ></app-skeleton-loader>
+      <span *ngIf="isLoaded">Twitch</span>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <app-skeleton-loader
+        *ngIf="!isLoaded"
+        [Swidth]="160"
+        [Sheight]="17"
+      ></app-skeleton-loader>
+      <span *ngIf="isLoaded">Twitch Interactive, Inc.</span>
+    </mat-card-subtitle>
 
     <button
+      *ngIf="isLoaded"
       mat-icon-button
       class="app-card-menu-btn"
       [matMenuTriggerFor]="menuAppCard"
