@@ -9,6 +9,7 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
 
   cols = 0;
   widthList = 0;
+  apps = new Array(50);
 
   constructor(private elementRef: ElementRef) {
   }
