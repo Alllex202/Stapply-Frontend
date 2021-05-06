@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  menuIsOpen = false;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  menuOpened(): void {
+    this.menuIsOpen = true;
+  }
+
+  menuClosed(): void {
+    this.menuIsOpen = false;
   }
 
 }
