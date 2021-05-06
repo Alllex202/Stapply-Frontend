@@ -1,5 +1,12 @@
 <mat-card class="app-card">
-  <img mat-card-image class="app-card-image" src="assets/twitch-screen.webp" alt="twitch screen">
+  <img
+    mat-card-image
+    class="app-card-image"
+    src="assets/twitch-screen.webp"
+    alt="twitch screen"
+    (click)="cardClicked()"
+  >
+
   <mat-card-header>
     <div mat-card-avatar class="app-card-header-image">
       <img src="assets/twitch.svg" alt="twitch">

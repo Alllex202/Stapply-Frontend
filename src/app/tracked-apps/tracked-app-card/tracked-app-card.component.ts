@@ -23,4 +23,8 @@ export class TrackedAppCardComponent implements OnInit {
     this.menuIsOpen = false;
   }
 
+  cardClicked(): void {
+    console.log('open card');
+  }
+
 }
