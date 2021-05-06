@@ -1,0 +1,12 @@
+<div class="apps-list-container">
+  <mat-grid-list
+    [cols]="getCols()"
+    rowHeight="274px"
+    gutterSize="32px"
+    class="apps-list"
+  >
+    <mat-grid-tile *ngFor="let item of [1,2,12,12,12,12,12]">
+      <app-tracked-app-card></app-tracked-app-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

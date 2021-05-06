@@ -13,6 +13,7 @@ import { TrackedAppsComponent } from './tracked-apps/tracked-apps.component';
 import { TrackedAppCardComponent } from './tracked-apps/tracked-app-card/tracked-app-card.component';
 import {MatCardModule} from '@angular/material/card';
 import { TrackedAppsListComponent } from './tracked-apps/tracked-apps-list/tracked-apps-list.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TrackedAppsListComponent } from './tracked-apps/tracked-apps-list/track
     MatMenuModule,
     MatIconModule,
     MatCardModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
