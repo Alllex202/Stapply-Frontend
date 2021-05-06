@@ -1,0 +1,32 @@
+<mat-card class="app-card">
+  <img mat-card-image class="app-card-image" src="assets/twitch-screen.webp" alt="twitch screen">
+  <mat-card-header>
+    <div mat-card-avatar class="app-card-header-image">
+      <img src="assets/twitch.svg" alt="twitch">
+    </div>
+    <mat-card-title>Twitch</mat-card-title>
+    <mat-card-subtitle>Twitch Interactive, Inc.</mat-card-subtitle>
+
+    <button
+      mat-icon-button
+      class="app-card-menu-btn"
+      [matMenuTriggerFor]="menuAppCard"
+      (menuOpened)="menuOpened()"
+      (menuClosed)="menuClosed()"
+      [color]="menuIsOpen && 'primary'"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menuAppCard="matMenu" xPosition="before">
+      <button mat-menu-item>
+        <mat-icon>text_fields</mat-icon>
+        <span>Переименовать</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>delete_alt</mat-icon>
+        <span>Удалить</span>
+      </button>
+    </mat-menu>
+  </mat-card-header>
+</mat-card>

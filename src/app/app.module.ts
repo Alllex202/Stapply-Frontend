@@ -9,11 +9,18 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import { TrackedAppsComponent } from './tracked-apps/tracked-apps.component';
+import { TrackedAppCardComponent } from './tracked-apps/tracked-app-card/tracked-app-card.component';
+import {MatCardModule} from '@angular/material/card';
+import { TrackedAppsListComponent } from './tracked-apps/tracked-apps-list/tracked-apps-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    TrackedAppsComponent,
+    TrackedAppCardComponent,
+    TrackedAppsListComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +30,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
