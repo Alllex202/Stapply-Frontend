@@ -1,5 +1,5 @@
-<mat-card class="app-card">
-  <div class="skeleton-container" *ngIf="!isLoaded">
+<mat-card class="app-card" *ngIf="isSkeleton">
+  <div class="skeleton-container" *ngIf="isSkeleton">
     <app-skeleton-loader
       [Swidth]="100"
       [Sheight]="100"
@@ -7,44 +7,55 @@
       [percent]="true"
     ></app-skeleton-loader>
   </div>
-  <img *ngIf="isLoaded"
-       mat-card-image
-       class="app-card-image"
-       src="assets/twitch-screen.webp"
-       alt="twitch screen"
-       (click)="cardClicked()"
-  >
 
   <mat-card-header>
     <div mat-card-avatar class="app-card-header-image">
       <app-skeleton-loader
-        *ngIf="!isLoaded"
+        *ngIf="isSkeleton"
         [Swidth]="100"
         [Sheight]="100"
         [circle]="true"
         [percent]="true"
       ></app-skeleton-loader>
-      <img *ngIf="isLoaded" src="assets/twitch.svg" alt="twitch">
     </div>
     <mat-card-title>
       <app-skeleton-loader
-        *ngIf="!isLoaded"
+        *ngIf="isSkeleton"
         [Swidth]="90"
         [Sheight]="24"
       ></app-skeleton-loader>
-      <span *ngIf="isLoaded">Twitch</span>
     </mat-card-title>
     <mat-card-subtitle>
       <app-skeleton-loader
-        *ngIf="!isLoaded"
+        *ngIf="isSkeleton"
         [Swidth]="160"
         [Sheight]="17"
       ></app-skeleton-loader>
-      <span *ngIf="isLoaded">Twitch Interactive, Inc.</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
+
+<mat-card class="app-card" *ngIf="!isSkeleton">
+  <img
+       mat-card-image
+       class="app-card-image"
+       [src]="appData.imageSrc"
+       alt="twitch screen"
+       (click)="cardClicked()"
+  >
+
+  <mat-card-header>
+    <div mat-card-avatar class="app-card-header-avatar">
+      <img [src]="appData.avatarSrc" alt="twitch">
+    </div>
+    <mat-card-title>
+      {{appData.name}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{appData.developer}}
     </mat-card-subtitle>
 
     <button
-      *ngIf="isLoaded"
       mat-icon-button
       class="app-card-menu-btn"
       [matMenuTriggerFor]="menuAppCard"

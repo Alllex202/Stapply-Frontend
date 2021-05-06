@@ -1,4 +1,5 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {TrackedAppsService} from '../tracked-apps.service';
 
 @Component({
   selector: 'app-tracked-apps-list',
@@ -7,11 +8,18 @@ import {Component, OnInit, AfterViewInit} from '@angular/core';
 })
 export class TrackedAppsListComponent implements OnInit, AfterViewInit {
 
+  trackedApps: Array<any> | undefined;
+  isLoaded = false;
   cols = 0;
   widthList = 0;
-  apps = new Array(50);
 
-  constructor() {
+  constructor(
+    public trackedAppsService: TrackedAppsService
+  ) {
+    trackedAppsService.getTrackedApps().subscribe(apps => {
+      this.trackedApps = apps;
+      this.isLoaded = true;
+    });
   }
 
   ngOnInit(): void {

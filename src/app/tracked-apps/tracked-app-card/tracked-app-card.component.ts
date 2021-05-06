@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-tracked-app-card',
@@ -7,16 +7,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class TrackedAppCardComponent implements OnInit {
 
+  @Input() isSkeleton: boolean | undefined;
+  @Input() appData: any;
   menuIsOpen = false;
-  isLoaded = false;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.isLoaded = true;
-    }, 3000);
   }
 
   menuOpened(): void {

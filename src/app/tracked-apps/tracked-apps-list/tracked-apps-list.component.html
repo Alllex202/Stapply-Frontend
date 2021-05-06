@@ -7,8 +7,18 @@
     gutterSize="32px"
     class="apps-list"
   >
-    <mat-grid-tile *ngFor="let item of apps">
-      <app-tracked-app-card></app-tracked-app-card>
+    <mat-grid-tile *ngFor="let appData of trackedApps">
+      <app-tracked-app-card [appData]="appData"></app-tracked-app-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="!isLoaded">
+      <app-tracked-app-card [isSkeleton]="true"></app-tracked-app-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="!isLoaded">
+      <app-tracked-app-card [isSkeleton]="true"></app-tracked-app-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngIf="!isLoaded">
+      <app-tracked-app-card [isSkeleton]="true"></app-tracked-app-card>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
