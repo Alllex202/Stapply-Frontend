@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit, ElementRef} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 
 @Component({
   selector: 'app-tracked-apps-list',
@@ -11,7 +11,7 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
   widthList = 0;
   apps = new Array(50);
 
-  constructor(private elementRef: ElementRef) {
+  constructor() {
   }
 
   ngOnInit(): void {
