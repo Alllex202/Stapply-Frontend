@@ -24,7 +24,7 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
   getCols(): number {
     const width: number = document.documentElement.clientWidth;
     const widthTile = 344;
-    const gutterSize = 32;
+    const gutterSize = 34;
     const colsWithoutGutter = Math.floor((width - 135 * 2) / widthTile);
     const gutter = (colsWithoutGutter - 1) * gutterSize;
     this.cols = Math.floor((width - 135 * 2 - gutter) / widthTile) === colsWithoutGutter ? colsWithoutGutter : colsWithoutGutter - 1;
