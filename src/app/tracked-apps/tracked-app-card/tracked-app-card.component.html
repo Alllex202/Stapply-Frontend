@@ -39,20 +39,20 @@
   <img
        mat-card-image
        class="app-card-image"
-       [src]="appData.imageSrc"
+       [src]="appData?.imageSrc"
        alt="twitch screen"
        (click)="cardClicked()"
   >
 
   <mat-card-header>
     <div mat-card-avatar class="app-card-header-avatar">
-      <img [src]="appData.avatarSrc" alt="twitch">
+      <img [src]="appData?.avatarSrc" alt="twitch">
     </div>
     <mat-card-title>
-      {{appData.name}}
+      {{appData?.name}}
     </mat-card-title>
     <mat-card-subtitle>
-      {{appData.developer}}
+      {{appData?.developer}}
     </mat-card-subtitle>
 
     <button

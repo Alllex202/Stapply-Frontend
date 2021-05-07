@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {ITrackedAppCardRenameData} from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-tracked-app-rename-dialog',
@@ -13,7 +14,7 @@ export class TrackedAppRenameDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TrackedAppRenameDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: ITrackedAppCardRenameData,
   ) {
   }
 
@@ -29,7 +30,7 @@ export class TrackedAppRenameDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.newName = this.data.name;
+    this.newName = this.data?.name;
   }
 
 }
