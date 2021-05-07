@@ -23,7 +23,7 @@ export class TrackedAppDeleteDialogComponent implements OnInit {
     // todo delete tracked app
     this.isLoading = true;
     setTimeout(() => {
-      console.log('Remove http done');
+      console.log('Delete http done');
       this.isLoading = false;
 
       this.dialogRef.close(true);

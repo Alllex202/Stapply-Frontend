@@ -2,6 +2,7 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {TrackedAppDeleteDialogComponent} from '../tracked-app-delete-dialog/tracked-app-delete-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {TrackedAppRenameDialogComponent} from '../tracked-app-rename-dialog/tracked-app-rename-dialog.component';
 
 @Component({
   selector: 'app-tracked-app-card',
@@ -11,6 +12,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class TrackedAppCardComponent implements OnInit {
 
   @Output() deleteCard = new EventEmitter<number>();
+  @Output() renameCard = new EventEmitter<object>();
   @Input() isSkeleton: boolean | undefined;
   @Input() appData: any;
   menuIsOpen = false;
@@ -33,6 +35,25 @@ export class TrackedAppCardComponent implements OnInit {
         this.deleteCard.emit(this.appData.id);
         this.SnackBar.open(`Приложение “${this.appData.name}“ удалено`, undefined, {
           duration: 2000,
+        });
+      }
+    });
+  }
+
+  openRenameDialog(): void {
+    const renameDialogRef = this.dialog.open(TrackedAppRenameDialogComponent, {
+      autoFocus: false,
+      panelClass: 'dialog',
+      data: this.appData,
+      disableClose: true,
+    });
+
+    renameDialogRef.afterClosed().subscribe(result => {
+      if (result){
+        const oldName = this.appData.name;
+        this.renameCard.emit({newName: result, idApp: this.appData.id});
+        this.SnackBar.open(`“${oldName}“ переименован в “${result}“`, undefined, {
+          duration: 1500,
         });
       }
     });

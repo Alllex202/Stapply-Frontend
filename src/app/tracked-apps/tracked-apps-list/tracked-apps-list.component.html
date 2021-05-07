@@ -8,7 +8,11 @@
     class="apps-list"
   >
     <mat-grid-tile *ngFor="let appData of trackedApps">
-      <app-tracked-app-card [appData]="appData" (deleteCard)="deleteTrackedApp($event)"></app-tracked-app-card>
+      <app-tracked-app-card
+        [appData]="appData"
+        (deleteCard)="deleteTrackedApp($event)"
+        (renameCard)="renameTrackedCard($event)"
+      ></app-tracked-app-card>
     </mat-grid-tile>
 
     <mat-grid-tile *ngIf="!isLoaded">

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tracked-app-rename-dialog',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrackedAppRenameDialogComponent implements OnInit {
 
-  constructor() { }
+  isLoading = false;
+  newName = '';
+
+  constructor(
+    public dialogRef: MatDialogRef<TrackedAppRenameDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+  ) {
+  }
+
+  onRenameClick(): void {
+    // todo rename tracked app
+    this.isLoading = true;
+    setTimeout(() => {
+      console.log('Rename http done');
+      this.isLoading = true;
+
+      this.dialogRef.close(this.newName);
+    }, 2000);
+  }
 
   ngOnInit(): void {
+    this.newName = this.data.name;
   }
 
 }

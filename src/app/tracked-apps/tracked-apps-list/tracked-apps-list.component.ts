@@ -44,4 +44,15 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
       this.trackedApps = this.trackedApps.filter(app => app.id !== idDeleteApp);
     }
   }
+
+  renameTrackedCard(newData: any): void {
+    if (this.trackedApps !== undefined) {
+      this.trackedApps = this.trackedApps.map(app => {
+        if (app.id === newData.idApp) {
+          app.name = newData.newName;
+        }
+        return app;
+      });
+    }
+  }
 }

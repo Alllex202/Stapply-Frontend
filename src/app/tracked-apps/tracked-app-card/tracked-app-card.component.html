@@ -69,7 +69,7 @@
 </mat-card>
 
 <mat-menu #menuAppCard="matMenu" xPosition="before">
-  <button mat-menu-item>
+  <button mat-menu-item (click)="openRenameDialog()">
     <mat-icon>text_fields</mat-icon>
     <span>Переименовать</span>
   </button>

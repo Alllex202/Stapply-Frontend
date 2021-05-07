@@ -1,0 +1,17 @@
+.dialog-form {
+  width: 100%;
+}
+
+.dialog-actions {
+  position: relative;
+
+  .dialog-ok {
+    width: 72px;
+    margin-left: 5px;
+  }
+
+  .dialog-action-spinner-container {
+    position: absolute;
+    right: 17px;
+  }
+}
