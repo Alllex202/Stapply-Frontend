@@ -10,10 +10,10 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $main-app-primary: mat-palette($mat-deep-purple, 500);
-$main-app-accent:  mat-palette($mat-deep-purple, 200);
+$main-app-accent: mat-palette($mat-deep-purple, 200);
 
 // The warn palette is optional (defaults to red).
-$main-app-warn:    mat-palette($mat-red);
+$main-app-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as `color` or `typography`.
@@ -32,5 +32,48 @@ $main-app-theme: mat-light-theme((
 
 
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.dialog {
+  .mat-dialog-container {
+    //background-color: blue;
+    //height: 204px;
+    width: 416px;
+    padding: 20px 32px;
+    border-radius: 8px;
+
+    .dialog-title {
+      margin-bottom: 12px;
+    }
+
+    .dialog-actions-container {
+      display: flex;
+      flex-direction: row-reverse;
+      margin: 28px 0 0;
+
+      .dialog-actions {
+        display: flex;
+
+        .dialog-btn-outline {
+          border-color: #6200E8;
+        }
+
+        .dialog-action-spinner-container {
+          .dialog-action-spinner {
+            width: 36px;
+            height: 36px;
+          }
+        }
+
+      }
+    }
+  }
+}

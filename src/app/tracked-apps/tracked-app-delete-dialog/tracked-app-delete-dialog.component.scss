@@ -1,0 +1,11 @@
+.dialog-actions {
+  position: relative;
+  .dialog-remove {
+    margin-left: 5px;
+  }
+
+  .dialog-action-spinner-container {
+    position: absolute;
+    right: 25px;
+  }
+}

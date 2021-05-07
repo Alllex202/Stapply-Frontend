@@ -1,0 +1,27 @@
+<h2 mat-dialog-title class="mat-title dialog-title">Удалить?</h2>
+<div mat-dialog-content class="mat-subheading-2 dialog-content">
+  Вы удалите приложение “{{data.name}}” из списка отслеживаемых.
+</div>
+<div class="dialog-actions-container">
+  <div class="dialog-actions">
+    <button
+      mat-stroked-button
+      class="dialog-btn-outline"
+      mat-dialog-close color="primary"
+      [disabled]="isLoading"
+    >Отмена
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="dialog-remove"
+      (click)="onDeleteClick()"
+      [disabled]="isLoading"
+      [ngStyle]="{'visibility':isLoading && 'hidden'}"
+    >Удалить
+    </button>
+    <div class="dialog-action-spinner-container" *ngIf="isLoading">
+      <mat-spinner diameter="36"></mat-spinner>
+    </div>
+  </div>
+</div>

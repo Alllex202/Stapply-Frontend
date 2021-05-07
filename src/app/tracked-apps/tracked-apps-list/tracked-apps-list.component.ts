@@ -38,4 +38,10 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
     this.cols = Math.floor((width - 135 * 2 - gutter) / widthTile) === colsWithoutGutter ? colsWithoutGutter : colsWithoutGutter - 1;
     return this.cols;
   }
+
+  deleteTrackedApp(idDeleteApp: number): void {
+    if (this.trackedApps !== undefined) {
+      this.trackedApps = this.trackedApps.filter(app => app.id !== idDeleteApp);
+    }
+  }
 }

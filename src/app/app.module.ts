@@ -18,6 +18,11 @@ import {SkeletonLoaderComponent} from './skeleton-loader/skeleton-loader.compone
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './api/in-memory-data.service';
+import { TrackedAppRenameDialogComponent } from './tracked-apps/tracked-app-rename-dialog/tracked-app-rename-dialog.component';
+import { TrackedAppDeleteDialogComponent } from './tracked-apps/tracked-app-delete-dialog/tracked-app-delete-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,9 @@ import {InMemoryDataService} from './api/in-memory-data.service';
     TrackedAppsComponent,
     TrackedAppCardComponent,
     TrackedAppsListComponent,
-    SkeletonLoaderComponent
+    SkeletonLoaderComponent,
+    TrackedAppRenameDialogComponent,
+    TrackedAppDeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,7 @@ import {InMemoryDataService} from './api/in-memory-data.service';
     HttpClientModule,
     // please, remove this when real api will be ready
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false, delay: 1500 }
+      InMemoryDataService, { dataEncapsulation: false, delay: 0 }
     ),
     MatToolbarModule,
     MatButtonModule,
@@ -43,7 +50,9 @@ import {InMemoryDataService} from './api/in-memory-data.service';
     MatIconModule,
     MatCardModule,
     MatGridListModule,
-
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
