@@ -26,6 +26,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {FormsModule} from '@angular/forms';
     SkeletonLoaderComponent,
     TrackedAppRenameDialogComponent,
     TrackedAppDeleteDialogComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
