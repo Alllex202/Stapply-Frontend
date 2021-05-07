@@ -45,7 +45,7 @@ import {FormsModule} from '@angular/forms';
     HttpClientModule,
     // please, remove this when real api will be ready
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false, delay: 0 }
+      InMemoryDataService, { dataEncapsulation: false, delay: 2500 }
     ),
     MatToolbarModule,
     MatButtonModule,
