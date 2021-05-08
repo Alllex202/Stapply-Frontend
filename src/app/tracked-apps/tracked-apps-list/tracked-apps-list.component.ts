@@ -12,39 +12,37 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
   trackedApps: Array<ITrackedAppCard> | undefined;
   isLoaded = false;
   cols = 0;
-  widthList = 0;
   btnCardAddMiniIsVisible: boolean | undefined;
   btnCardAdd: HTMLElement | null | undefined;
 
   constructor(
     public trackedAppsService: TrackedAppsService
   ) {
-    this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen();
     trackedAppsService.getTrackedApps().subscribe(apps => {
       this.trackedApps = apps;
       this.isLoaded = true;
     });
-    this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen();
   }
 
   ngOnInit(): void {
     this.btnCardAdd = document.getElementById('cardAdd');
+    this.calculateCols();
   }
 
   ngAfterViewInit(): void {
-    window.addEventListener('resize', this.getCols);
+    setTimeout(() => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
+    window.addEventListener('resize', () => this.calculateCols());
     window.addEventListener('scroll', () => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
     window.addEventListener('resize', () => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
   }
 
-  getCols(): number {
-    const width = document.documentElement.clientWidth;
+  calculateCols(): void {
+    const width = window.innerWidth;
     const widthTile = 344;
     const gutterSize = 34;
     const colsWithoutGutter = Math.floor((width - 135 * 2) / widthTile);
     const gutter = (colsWithoutGutter - 1) * gutterSize;
     this.cols = Math.floor((width - 135 * 2 - gutter) / widthTile) === colsWithoutGutter ? colsWithoutGutter : colsWithoutGutter - 1;
-    return this.cols;
   }
 
   deleteTrackedApp(idDeleteApp: number): void {
