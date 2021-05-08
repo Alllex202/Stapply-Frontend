@@ -67,10 +67,8 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
   checkVisibilityCardAddOnScreen(): boolean {
     if (this.btnCardAdd) {
       const coords = this.btnCardAdd.getBoundingClientRect();
-      console.log(coords.y >= 0 && coords.bottom <= window.innerHeight);
       return coords.y >= 0 && coords.bottom <= window.innerHeight;
     }
-    console.log(false);
     return false;
   }
 }

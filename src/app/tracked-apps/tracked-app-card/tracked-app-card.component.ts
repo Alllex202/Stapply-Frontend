@@ -12,6 +12,8 @@ import {ITrackedAppCard} from '../../interfaces/interfaces';
 })
 export class TrackedAppCardComponent implements OnInit {
 
+  urlPath = '/tracked/';
+
   @Output() deleteCard = new EventEmitter<number>();
   @Output() renameCard = new EventEmitter<object>();
   @Input() isSkeleton: boolean | undefined;
@@ -21,6 +23,10 @@ export class TrackedAppCardComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private SnackBar: MatSnackBar) {
+  }
+
+  ngOnInit(): void {
+    this.urlPath += this.appData?.id;
   }
 
   openDeleteDialog(): void {
@@ -60,9 +66,6 @@ export class TrackedAppCardComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-
   menuOpened(): void {
     this.menuIsOpen = true;
   }
@@ -72,6 +75,6 @@ export class TrackedAppCardComponent implements OnInit {
   }
 
   cardClicked(): void {
-    console.log('open card');
+    // console.log('open card');
   }
 }
