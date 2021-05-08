@@ -24,5 +24,14 @@
     <mat-grid-tile *ngIf="!isLoaded">
       <app-tracked-app-card [isSkeleton]="true"></app-tracked-app-card>
     </mat-grid-tile>
+
+    <mat-grid-tile>
+      <app-tracked-app-card-add id="cardAdd" routerLink="/search"></app-tracked-app-card-add>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>
+
+<button mat-fab color="primary" [class.card-add-mini-hide]="!btnCardAddMiniIsVisible" class="card-add-mini"
+        routerLink="/search">
+  <mat-icon>add</mat-icon>
+</button>

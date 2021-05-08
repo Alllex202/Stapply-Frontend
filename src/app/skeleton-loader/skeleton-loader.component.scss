@@ -2,6 +2,7 @@
   display: block;
   position: relative;
   background-color: rgb(235, 235, 235);
+  overflow: hidden;
 
   &::after {
     display: block;

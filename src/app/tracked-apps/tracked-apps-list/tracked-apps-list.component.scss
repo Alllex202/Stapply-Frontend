@@ -1,7 +1,21 @@
-.apps-list-container{
+.apps-list-container {
   margin: 0 135px;
   padding: 32px 0;
 }
+
+button.card-add-mini {
+  position: fixed;
+  bottom: 30px;
+  right: 24px;
+
+  transition: .2s bottom;
+
+
+}
+button.card-add-mini-hide {
+   bottom: -70px;
+ }
+
 //.apps-list{
 //  margin: 32px 135px 50px;
 //}

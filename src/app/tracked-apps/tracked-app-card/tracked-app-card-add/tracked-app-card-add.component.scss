@@ -1,0 +1,29 @@
+.app-card-add {
+  box-sizing: border-box;
+  width: 344px;
+  height: 274px;
+  cursor: pointer;
+
+  &:hover {
+    .content {
+      .plus-icon {
+        transform: scale(6);
+      }
+    }
+  }
+
+  .content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .plus-icon {
+      margin-top: 80px;
+      color: rgba(0, 0, 0, 0.6);
+      transform: scale(4);
+      transition: .2s transform;
+    }
+  }
+}

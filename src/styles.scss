@@ -41,7 +41,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
 .dialog {
   .mat-dialog-container {
     //background-color: blue;
@@ -76,4 +75,8 @@ body {
       }
     }
   }
+}
+
+.no-select {
+  user-select: none;
 }
