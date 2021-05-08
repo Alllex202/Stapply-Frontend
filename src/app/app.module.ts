@@ -28,6 +28,7 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TrackedAppCardAddComponent } from './tracked-apps/tracked-app-card/tracked-app-card-add/tracked-app-card-add.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { TrackedAppCardAddComponent } from './tracked-apps/tracked-app-card/trac
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

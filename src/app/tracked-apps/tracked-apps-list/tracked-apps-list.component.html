@@ -31,7 +31,18 @@
   </mat-grid-list>
 </div>
 
-<button mat-fab color="primary" [class.card-add-mini-hide]="!btnCardAddMiniIsVisible" class="card-add-mini"
-        routerLink="/search">
+<button
+  mat-fab
+  color="primary"
+  [class.card-add-mini-hide]="!btnCardAddMiniIsVisible"
+  class="card-add-mini"
+  matTooltip="Добавить приложение"
+  matTooltipShowDelay="300"
+  matTooltipHideDelay="300"
+  matTooltipPosition="left"
+  matTooltipClass="custom-tooltip"
+  [matTooltipDisabled]="!btnCardAddMiniIsVisible"
+  routerLink="/search"
+>
   <mat-icon>add</mat-icon>
 </button>
