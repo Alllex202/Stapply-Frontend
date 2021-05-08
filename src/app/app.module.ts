@@ -27,6 +27,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TrackedAppCardAddComponent } from './tracked-apps/tracked-app-card/tracked-app-card-add/tracked-app-card-add.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     TrackedAppRenameDialogComponent,
     TrackedAppDeleteDialogComponent,
     PageNotFoundComponent,
+    TrackedAppCardAddComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpClientModule,
     // please, remove this when real api will be ready
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false, delay: 2500 }
+      InMemoryDataService, { dataEncapsulation: false, delay: 2000 }
     ),
     MatToolbarModule,
     MatButtonModule,
