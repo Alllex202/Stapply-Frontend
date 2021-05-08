@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
 import {TrackedAppsService} from '../tracked-apps.service';
 import {ITrackedAppCard} from '../../interfaces/interfaces';
 
@@ -18,9 +18,11 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
   constructor(
     public trackedAppsService: TrackedAppsService
   ) {
+
     trackedAppsService.getTrackedApps().subscribe(apps => {
       this.trackedApps = apps;
       this.isLoaded = true;
+      setTimeout(() => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
     });
   }
 
