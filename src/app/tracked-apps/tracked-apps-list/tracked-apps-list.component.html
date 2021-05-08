@@ -26,7 +26,7 @@
     </mat-grid-tile>
 
     <mat-grid-tile>
-      <app-tracked-app-card-add id="cardAdd" routerLink="/search"></app-tracked-app-card-add>
+      <app-tracked-app-card-add id="cardAdd"></app-tracked-app-card-add>
     </mat-grid-tile>
   </mat-grid-list>
 </div>
@@ -42,7 +42,7 @@
   matTooltipPosition="left"
   matTooltipClass="custom-tooltip"
   [matTooltipDisabled]="!btnCardAddMiniIsVisible"
-  routerLink="/search"
+  [routerLink]="urlSearch"
 >
   <mat-icon>add</mat-icon>
 </button>

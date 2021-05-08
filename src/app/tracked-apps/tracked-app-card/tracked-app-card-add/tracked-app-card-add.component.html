@@ -1,6 +1,6 @@
-<mat-card class="app-card-add no-select" (click)="onCartAddClick()">
+<mat-card class="app-card-add no-select" (click)="onCartAddClick()" [routerLink]="urlSearch">
   <div class="content">
-      <mat-icon class="plus-icon">add</mat-icon>
+    <mat-icon class="plus-icon">add</mat-icon>
     <h2 class="mat-title">Добавить приложение</h2>
   </div>
 </mat-card>

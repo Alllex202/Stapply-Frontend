@@ -35,12 +35,12 @@
   </mat-card-header>
 </mat-card>
 
-<mat-card [routerLink]="urlPath" class="app-card" *ngIf="!isSkeleton">
+<mat-card [routerLink]="urlTrackedApp" class="app-card" *ngIf="!isSkeleton">
   <img
-       mat-card-image
-       class="app-card-image"
-       [src]="appData?.imageSrc"
-       alt="twitch screen"
+    mat-card-image
+    class="app-card-image"
+    [src]="appData?.imageSrc"
+    alt="twitch screen"
   >
 
   <mat-card-header>

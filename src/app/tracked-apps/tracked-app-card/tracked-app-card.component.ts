@@ -4,6 +4,7 @@ import {TrackedAppDeleteDialogComponent} from '../tracked-app-delete-dialog/trac
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TrackedAppRenameDialogComponent} from '../tracked-app-rename-dialog/tracked-app-rename-dialog.component';
 import {ITrackedAppCard} from '../../interfaces/interfaces';
+import {UrlsClient} from '../../urls/client';
 
 @Component({
   selector: 'app-tracked-app-card',
@@ -12,7 +13,7 @@ import {ITrackedAppCard} from '../../interfaces/interfaces';
 })
 export class TrackedAppCardComponent implements OnInit {
 
-  urlPath = '/tracked/';
+  urlTrackedApp = UrlsClient.TrackedApp;
 
   @Output() deleteCard = new EventEmitter<number>();
   @Output() renameCard = new EventEmitter<object>();
@@ -26,7 +27,7 @@ export class TrackedAppCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.urlPath += this.appData?.id;
+    this.urlTrackedApp += this.appData?.id;
   }
 
   openDeleteDialog(): void {
