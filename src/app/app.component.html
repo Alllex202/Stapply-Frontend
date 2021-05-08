@@ -1,4 +1,4 @@
 <div class="app-container">
-  <app-toolbar></app-toolbar>
+  <app-toolbar *ngIf="toolbarShow" [title]="title"></app-toolbar>
   <router-outlet></router-outlet>
 </div>
