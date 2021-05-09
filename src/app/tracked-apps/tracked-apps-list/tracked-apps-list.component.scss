@@ -1,6 +1,12 @@
 .apps-list-container {
   margin: 0 135px;
   padding: 32px 0;
+
+  mat-grid-list {
+    mat-grid-tile {
+      overflow: visible;
+    }
+  }
 }
 
 button.card-add-mini {
@@ -12,9 +18,10 @@ button.card-add-mini {
 
 
 }
+
 button.card-add-mini-hide {
-   bottom: -70px;
- }
+  bottom: -70px;
+}
 
 //.apps-list{
 //  margin: 32px 135px 50px;
