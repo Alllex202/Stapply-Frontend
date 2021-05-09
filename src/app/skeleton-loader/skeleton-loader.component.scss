@@ -4,6 +4,7 @@
   overflow: hidden;
   background-color: rgb(235, 235, 235);
   border-radius: 4px;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 
   &::after {
     display: block;
