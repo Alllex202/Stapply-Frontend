@@ -52,7 +52,7 @@ export class TrackedAppCardComponent implements OnInit {
     const renameDialogRef = this.dialog.open(TrackedAppRenameDialogComponent, {
       autoFocus: false,
       panelClass: 'dialog',
-      data: {name: this.appData?.name},
+      data: this.appData,
       disableClose: true,
     });
 

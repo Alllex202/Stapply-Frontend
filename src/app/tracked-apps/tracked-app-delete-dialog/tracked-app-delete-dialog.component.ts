@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ITrackedAppCardDeleteData} from '../../interfaces/interfaces';
+import {ITrackedAppCard} from '../../interfaces/interfaces';
+// import {ITrackedAppCardDeleteData} from '../../interfaces/interfaces';
 
 @Component({
   selector: 'app-tracked-app-delete-dialog',
@@ -13,7 +14,7 @@ export class TrackedAppDeleteDialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<TrackedAppDeleteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ITrackedAppCardDeleteData
+    @Inject(MAT_DIALOG_DATA) public data: ITrackedAppCard
   ) {
   }
 
