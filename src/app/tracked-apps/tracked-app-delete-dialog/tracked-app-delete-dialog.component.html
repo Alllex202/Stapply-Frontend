@@ -9,7 +9,7 @@
       class="dialog-btn-outline"
       mat-dialog-close color="primary"
       [disabled]="isLoading"
-    >Отмена
+    ><span class="text-uppercase">Отмена</span>
     </button>
     <button
       mat-flat-button
@@ -18,7 +18,7 @@
       (click)="onDeleteClick()"
       [disabled]="isLoading"
       [ngStyle]="{'visibility':isLoading && 'hidden'}"
-    >Удалить
+    ><span class="text-uppercase">Удалить</span>
     </button>
     <div class="dialog-action-spinner-container" *ngIf="isLoading">
       <mat-spinner diameter="36"></mat-spinner>

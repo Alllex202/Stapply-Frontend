@@ -1,0 +1,26 @@
+h2.mat-title.dialog-title{
+  margin-bottom: 20px;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+
+  .dialog-content-text {
+    margin-bottom: 20px;
+  }
+}
+
+.dialog-actions {
+  position: relative;
+
+  .dialog-ok {
+    margin-left: 5px;
+  }
+
+  .dialog-action-spinner-container {
+    position: absolute;
+    right: 45px;
+  }
+}
+

@@ -1,0 +1,87 @@
+// custom input
+// жопа, а не поле для ввода
+::ng-deep .toolbar .mat-form-field:not(.mat-focused) .mat-form-field-outline-start {
+  border-color: #e0e0e0;
+}
+
+::ng-deep .toolbar .mat-form-field:not(.mat-focused) .mat-form-field-outline-end {
+  border-color: #e0e0e0;
+}
+
+::ng-deep .toolbar .mat-form-field-wrapper > .mat-form-field-flex {
+  height: 48px;
+  align-items: center;
+}
+
+::ng-deep .toolbar .mat-form-field-wrapper {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+::ng-deep .toolbar .mat-form-field.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0;
+}
+
+::ng-deep .toolbar .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0;
+  border: 0;
+}
+
+::ng-deep .toolbar .mat-form-field-appearance-outline .mat-form-field-label {
+  margin-top: -15px;
+}
+
+::ng-deep .toolbar label.ng-star-inserted {
+  transform: translateY(-0.59375em) scale(.75) !important;
+}
+
+.toolbar {
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  z-index: 999;
+
+  .toolbar-main {
+    position: relative;
+    height: 48px;
+
+    .toolbar-title {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+  }
+
+  .toolbar-search {
+    height: 80px;
+    justify-content: center;
+
+    .search-form-container {
+      height: 48px;
+      width: 778px;
+      margin-top: 0;
+      margin-bottom: auto;
+      font-size: 16px;
+
+      .search-form {
+        height: 48px;
+        width: 100%;
+
+        .search-form-input {
+          margin-top: 5px;
+        }
+
+        .search-form-icon {
+          margin-top: -6px;
+          margin-left: 4px;
+          margin-right: 16px;
+        }
+
+        .search-form-clear {
+          margin-top: -4px;
+        }
+      }
+    }
+  }
+}

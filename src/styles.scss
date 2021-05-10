@@ -43,8 +43,6 @@ body {
 
 .dialog {
   .mat-dialog-container {
-    //background-color: blue;
-    //height: 204px;
     width: 416px;
     padding: 20px 32px;
     border-radius: 8px;
@@ -71,11 +69,21 @@ body {
             height: 36px;
           }
         }
-
       }
     }
   }
 }
+
+.dialog-addition {
+  .mat-dialog-container {
+    width: 516px;
+
+    .dialog-actions-container {
+      margin: 10px 0 0;
+    }
+  }
+}
+
 
 .no-select {
   user-select: none;
@@ -83,4 +91,12 @@ body {
 
 .custom-tooltip {
   font-size: 15px;
+}
+
+button.mat-stroked-button.btn-outline {
+  border-color: #6200E8;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
 }

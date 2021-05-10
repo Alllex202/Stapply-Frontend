@@ -2,15 +2,12 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ITrackedAppCard} from '../interfaces/interfaces';
+import {UrlsApi} from '../urls/api';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrackedAppsService {
-
-  private apiUrls = {
-    trackedAppsList: 'api/apps',
-  };
 
   constructor(
     private httpClient: HttpClient,
@@ -18,6 +15,6 @@ export class TrackedAppsService {
   }
 
   getTrackedApps(): Observable<Array<ITrackedAppCard>> {
-    return this.httpClient.get<ITrackedAppCard[]>(this.apiUrls.trackedAppsList);
+    return this.httpClient.get<ITrackedAppCard[]>(UrlsApi.TrackedApps);
   }
 }

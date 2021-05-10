@@ -1,0 +1,17 @@
+<div class="results-container">
+  <app-search-result-card *ngFor="let appData of searchResult" [appData]="appData"></app-search-result-card>
+  <app-search-result-card *ngIf="isLoading" [isSkeleton]="true"></app-search-result-card>
+  <app-search-result-card *ngIf="isLoading" [isSkeleton]="true"></app-search-result-card>
+  <app-search-result-card *ngIf="isLoading" [isSkeleton]="true"></app-search-result-card>
+</div>
+
+
+<button
+  mat-raised-button
+  color="primary"
+  class="manual-adding-btn"
+  (click)="openDialog()"
+>
+  <mat-icon>add</mat-icon>
+  <span class="btn-text text-uppercase">ДОБАВИТЬ ВРУЧНУЮ</span>
+</button>

@@ -5,3 +5,21 @@ export interface ITrackedAppCard {
   avatarSrc: string;
   imageSrc: string;
 }
+
+export interface INewApplication {
+  name: string;
+  linkAppStore: string;
+  linkGooglePlay: string;
+  linkAppGallery: string;
+}
+
+export interface ISearchAppCart {
+  id: number;
+  name: string;
+  developer: string;
+  avatarSrc: string;
+  isTracked: boolean;
+  linkAppStore: string;
+  linkGooglePlay: string;
+  linkAppGallery: string;
+}

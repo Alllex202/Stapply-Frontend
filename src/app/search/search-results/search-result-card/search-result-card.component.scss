@@ -1,0 +1,55 @@
+.result-card {
+  height: 136px;
+  width: 778px;
+  display: flex;
+  flex-direction: column;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+  .card-content {
+    height: 88px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .card-avatar {
+      height: 64px;
+      width: 64px;
+      margin: 0 16px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .card-info {
+      height: 56px;
+      width: 530px;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto 0 0;
+
+      .card-title {
+        line-height: 36px;
+        margin: 0;
+      }
+
+      .card-developer {
+
+      }
+
+      .card-action {
+        .card-tracking-btn {
+        }
+      }
+    }
+  }
+
+  .card-markets {
+    padding-left: 96px;
+
+    .chip-market {
+      font-weight: 400;
+      cursor: pointer;
+    }
+  }
+}

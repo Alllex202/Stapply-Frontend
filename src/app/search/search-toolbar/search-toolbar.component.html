@@ -1,0 +1,20 @@
+<mat-toolbar class="toolbar">
+  <mat-toolbar-row class="toolbar-main">
+    <button mat-button mat-icon-button routerLink="/tracked">
+      <mat-icon>close</mat-icon>
+    </button>
+    <span class="mat-body-1 toolbar-title">Добавить в отслеживаемое</span>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="toolbar-search">
+    <div class="search-form-container">
+      <mat-form-field appearance="outline" class="search-form">
+        <input matInput class="search-form-input" [(ngModel)]="searchInput" placeholder="Поиск приложений"
+               autocomplete="off" (keyup.enter)="onSearchClickEnter()">
+        <mat-icon matPrefix class="search-form-icon">search</mat-icon>
+        <button mat-button mat-icon-button matSuffix [disableRipple]="false" class="search-form-clear">
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

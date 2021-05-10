@@ -1,0 +1,49 @@
+<h2 mat-dialog-title class="mat-title dialog-title">Добавить вручную</h2>
+<div mat-dialog-content class="mat-subheading-2 dialog-content">
+  <mat-form-field class="dialog-form" appearance="outline">
+    <mat-label>Название приложения</mat-label>
+    <input matInput [(ngModel)]="newApp.name" autocomplete="off" placeholder="Название приложения"
+           name="nameApplication">
+  </mat-form-field>
+  <span class="dialog-content-text">Ссылки:</span>
+  <mat-form-field class="dialog-form" appearance="outline">
+    <mat-label>Страница в App Store</mat-label>
+    <input matInput [(ngModel)]="newApp.linkAppStore" autocomplete="off" placeholder="Страница в App Store"
+           name="hrefAppStore">
+  </mat-form-field>
+  <mat-form-field class="dialog-form" appearance="outline">
+    <mat-label>Страница в Google Play</mat-label>
+    <input matInput [(ngModel)]="newApp.linkGooglePlay" autocomplete="off" placeholder="Страница в Google Play"
+           name="hrefGooglePlay">
+  </mat-form-field>
+  <mat-form-field class="dialog-form" appearance="outline">
+    <mat-label>Страница в App Gallery</mat-label>
+    <input matInput [(ngModel)]="newApp.linkAppGallery" autocomplete="off" placeholder="Страница в App Gallery"
+           name="hrefAppGallery">
+  </mat-form-field>
+</div>
+<div class="dialog-actions-container">
+  <div class="dialog-actions">
+    <button
+      mat-stroked-button
+      class="dialog-btn-outline"
+      mat-dialog-close color="primary"
+      [disabled]="isLoading"
+    >
+      <span class="text-uppercase">Отмена</span>
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      class="dialog-ok"
+      (click)="onCreateAppClick()"
+      [disabled]="!(newApp.name && (newApp.linkAppStore || newApp.linkAppGallery || newApp.linkGooglePlay))"
+      [ngStyle]="{'visibility':isLoading && 'hidden'}"
+    >
+      <span class="text-uppercase">Отслеживать</span>
+    </button>
+    <div class="dialog-action-spinner-container" *ngIf="isLoading">
+      <mat-spinner diameter="36"></mat-spinner>
+    </div>
+  </div>
+</div>

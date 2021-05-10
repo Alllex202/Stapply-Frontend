@@ -29,6 +29,12 @@ import {FormsModule} from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TrackedAppCardAddComponent } from './tracked-apps/tracked-app-card/tracked-app-card-add/tracked-app-card-add.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { SearchComponent } from './search/search.component';
+import { SearchToolbarComponent } from './search/search-toolbar/search-toolbar.component';
+import { SearchResultsComponent } from './search/search-results/search-results.component';
+import { ManualAdditionModalComponent } from './search/manual-addition-modal/manual-addition-modal.component';
+import { SearchResultCardComponent } from './search/search-results/search-result-card/search-result-card.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -42,6 +48,11 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     TrackedAppDeleteDialogComponent,
     PageNotFoundComponent,
     TrackedAppCardAddComponent,
+    SearchComponent,
+    SearchToolbarComponent,
+    SearchResultsComponent,
+    ManualAdditionModalComponent,
+    SearchResultCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +76,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatInputModule,
     FormsModule,
     MatTooltipModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

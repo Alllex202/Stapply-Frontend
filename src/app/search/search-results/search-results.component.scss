@@ -1,0 +1,19 @@
+.results-container {
+  display: flex;
+  flex-direction: column;
+  width: 778px;
+  padding-top: 128px;
+  padding-bottom: 50px;
+  margin: 0 auto;
+}
+
+.manual-adding-btn{
+  height: 48px;
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  border-radius: 32px;
+  .btn-text{
+    margin-left: 12px;
+  }
+}

@@ -20,7 +20,6 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
   constructor(
     public trackedAppsService: TrackedAppsService
   ) {
-
     trackedAppsService.getTrackedApps().subscribe(apps => {
       this.trackedApps = apps;
       this.isLoaded = true;

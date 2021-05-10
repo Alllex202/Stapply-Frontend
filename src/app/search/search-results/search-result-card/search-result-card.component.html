@@ -1,0 +1,72 @@
+<div class="result-card" *ngIf="!isSkeleton">
+  <div class="card-content">
+    <img
+      [src]="appData?.avatarSrc"
+      alt="avatar"
+      class="card-avatar"
+    >
+    <div class="card-info">
+      <h1 class="mat-headline card-title">{{appData?.name}}</h1>
+      <span class="mat-body-1 card-developer">{{appData?.developer}}</span>
+    </div>
+    <div class="card-action">
+      <button
+        *ngIf="!appData?.isTracked"
+        mat-stroked-button
+        class="btn-outline card-tracking-btn"
+        color="primary"
+      ><span class="text-uppercase">Отслеживать</span>
+      </button>
+      <button
+        *ngIf="appData?.isTracked"
+        mat-flat-button
+        class="card-tracking-btn"
+        color="primary"
+      ><span class="text-uppercase">Отслеживать</span>
+      </button>
+    </div>
+  </div>
+  <mat-chip-list class="card-markets">
+    <mat-chip *ngIf="appData?.linkAppStore" class="chip chip-market">App Store</mat-chip>
+    <mat-chip *ngIf="appData?.linkGooglePlay" class="chip chip-market">Google Play</mat-chip>
+    <mat-chip *ngIf="appData?.linkAppGallery" class="chip chip-market">App Gallery</mat-chip>
+  </mat-chip-list>
+</div>
+
+
+<div class="result-card" *ngIf="isSkeleton">
+  <div class="card-content">
+    <app-skeleton-loader [circle]="true" [Swidth]="64" [Sheight]="64"></app-skeleton-loader>
+    <div class="card-info">
+<!--      <h1 class="mat-headline card-title">{{appData?.name}}</h1>-->
+      <app-skeleton-loader [Swidth]="100" [Sheight]="24"></app-skeleton-loader>
+<!--      <span class="mat-body-1 card-developer">{{appData?.developer}}</span>-->
+      <app-skeleton-loader [Swidth]="200" [Sheight]="14"></app-skeleton-loader>
+    </div>
+    <div class="card-action">
+<!--      <button-->
+<!--        *ngIf="!appData?.isTracked"-->
+<!--        mat-stroked-button-->
+<!--        class="btn-outline card-tracking-btn"-->
+<!--        color="primary"-->
+<!--      ><span class="text-uppercase">Отслеживать</span>-->
+<!--      </button>-->
+<!--      <button-->
+<!--        *ngIf="appData?.isTracked"-->
+<!--        mat-flat-button-->
+<!--        class="card-tracking-btn"-->
+<!--        color="primary"-->
+<!--      ><span class="text-uppercase">Отслеживать</span>-->
+<!--      </button>-->
+    </div>
+  </div>
+  <mat-chip-list class="card-markets">
+
+    <app-skeleton-loader [Swidth]="100" [Sheight]="24"></app-skeleton-loader>
+    <app-skeleton-loader [Swidth]="100" [Sheight]="24"></app-skeleton-loader>
+    <app-skeleton-loader [Swidth]="100" [Sheight]="24"></app-skeleton-loader>
+<!--    <mat-chip *ngIf="appData?.linkAppStore" class="chip chip-market">App Store</mat-chip>-->
+<!--    <mat-chip *ngIf="appData?.linkGooglePlay" class="chip chip-market">Google Play</mat-chip>-->
+<!--    <mat-chip *ngIf="appData?.linkAppGallery" class="chip chip-market">App Gallery</mat-chip>-->
+  </mat-chip-list>
+</div>
