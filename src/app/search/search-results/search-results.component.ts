@@ -13,7 +13,6 @@ export class SearchResultsComponent implements OnInit {
 
   @Input() isLoading: boolean | undefined;
   @Input() searchResult: Array<ISearchAppCart> | undefined;
-  searchInput = '';
 
   constructor(
     public dialog: MatDialog) {

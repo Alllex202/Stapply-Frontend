@@ -24,4 +24,7 @@ export class SearchToolbarComponent implements OnInit {
     this.onSearch.emit(this.searchInput);
   }
 
+  onClearInputClick(): void {
+    this.searchInput = '';
+  }
 }
