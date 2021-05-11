@@ -53,3 +53,37 @@
     }
   }
 }
+
+.result-card-skeleton {
+  .card-content {
+
+    .card-avatar-skeleton {
+      margin: 0 16px;
+    }
+
+    .card-info {
+      .card-title-skeleton {
+        height: 36px;
+        display: flex;
+        align-items: center;
+      }
+
+      .card-developer-skeleton {
+        height: 20px;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  .card-markets-skeleton {
+    display: flex;
+    flex-direction: row;
+    padding-left: 96px;
+
+    .chip-market-skeleton {
+      margin-right: 8px;
+
+    }
+  }
+}

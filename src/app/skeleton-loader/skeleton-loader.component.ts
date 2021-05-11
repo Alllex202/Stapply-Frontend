@@ -9,7 +9,7 @@ export class SkeletonLoaderComponent implements OnInit {
 
   @Input() Swidth: number | undefined;
   @Input() Sheight: number | undefined;
-  @Input() circle: boolean | undefined;
+  @Input() circle: number | undefined;
   @Input() percent: boolean | undefined;
 
   constructor() {
@@ -23,12 +23,12 @@ export class SkeletonLoaderComponent implements OnInit {
       ? {
         'width.px': this.Swidth ? this.Swidth : '',
         'height.px': this.Sheight ? this.Sheight : '',
-        'border-radius': this.circle ? '50%' : '',
+        'border-radius': this.circle ? `${this.circle}px` : '',
       }
       : {
         width: `${this.Swidth}%` ? `${this.Swidth}%` : '',
         height: `${this.Sheight}%` ? `${this.Sheight}%` : '',
-        'border-radius': this.circle ? '50%' : '',
+        'border-radius': this.circle ? `${this.circle}%` : '',
       };
   }
 }
