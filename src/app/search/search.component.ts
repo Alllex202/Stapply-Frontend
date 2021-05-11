@@ -31,4 +31,13 @@ export class SearchComponent implements OnInit {
   loadingPage(numPage: number): void {
     // todo Релизовать подгрузку результатов поиска
   }
+
+  onTrackingApp(idApp: number): void {
+    this.searchResult = this.searchResult.map(app => {
+      if (app.id === idApp) {
+        app.isTracked = !app.isTracked;
+      }
+      return app;
+    });
+  }
 }

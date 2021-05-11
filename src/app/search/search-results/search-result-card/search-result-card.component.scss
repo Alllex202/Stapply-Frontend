@@ -36,10 +36,18 @@
       .card-developer {
 
       }
+    }
 
-      .card-action {
-        .card-tracking-btn {
-        }
+    .card-action {
+      .card-tracking-btn {
+      }
+
+      .card-tracking-loading {
+        height: 36px;
+        width: 136px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }

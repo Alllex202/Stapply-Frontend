@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {ISearchAppCart} from '../../../interfaces/interfaces';
 
 @Component({
@@ -10,6 +10,9 @@ export class SearchResultCardComponent implements OnInit {
 
   @Input() appData: ISearchAppCart | undefined;
   @Input() isSkeleton: boolean | undefined;
+  @Output() onTrackingApp = new EventEmitter<number>();
+
+  isLoadingTrackingBtn = false;
 
   constructor() {
   }
@@ -17,4 +20,12 @@ export class SearchResultCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onTrackingAppClick(): void {
+    // todo реализовать запрос на сервер для кнопки отслеживания
+    this.isLoadingTrackingBtn = true;
+    setTimeout(() => {
+      this.onTrackingApp.emit(this.appData?.id);
+      this.isLoadingTrackingBtn = false;
+    }, 2000);
+  }
 }

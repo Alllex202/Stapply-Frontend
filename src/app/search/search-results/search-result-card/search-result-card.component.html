@@ -11,19 +11,24 @@
     </div>
     <div class="card-action">
       <button
-        *ngIf="!appData?.isTracked"
+        *ngIf="!appData?.isTracked && !isLoadingTrackingBtn"
         mat-stroked-button
         class="btn-outline card-tracking-btn"
         color="primary"
+        (click)="onTrackingAppClick()"
       ><span class="text-uppercase">Отслеживать</span>
       </button>
       <button
-        *ngIf="appData?.isTracked"
+        *ngIf="appData?.isTracked && !isLoadingTrackingBtn"
         mat-flat-button
         class="card-tracking-btn"
         color="primary"
+        (click)="onTrackingAppClick()"
       ><span class="text-uppercase">Отслеживать</span>
       </button>
+      <div class="card-tracking-loading" *ngIf="isLoadingTrackingBtn">
+        <mat-spinner diameter="36"></mat-spinner>
+      </div>
     </div>
   </div>
   <mat-chip-list class="card-markets">
