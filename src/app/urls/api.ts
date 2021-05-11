@@ -1,4 +1,6 @@
+const domain = 'http://localhost:8080/';
+
 export const UrlsApi = {
-  TrackedApps: 'api/apps',
-  Search: 'api/search',
+  TrackedApps: domain + 'api/apps',
+  Search: domain + 'api/search',
 };
