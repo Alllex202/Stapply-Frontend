@@ -60,9 +60,9 @@ import {MatChipsModule} from '@angular/material/chips';
     BrowserAnimationsModule,
     HttpClientModule,
     // please, remove this when real api will be ready
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false, delay: 2000 }
-    ),
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, { dataEncapsulation: false, delay: 2000 }
+    // ),
     MatToolbarModule,
     MatButtonModule,
     MatMenuModule,
