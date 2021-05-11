@@ -100,3 +100,14 @@ button.mat-stroked-button.btn-outline {
 .text-uppercase {
   text-transform: uppercase;
 }
+
+.toolbar {
+  box-shadow: none;
+  transition: .2s box-shadow;
+
+  &.toolbar-shadow {
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+

@@ -1,4 +1,5 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {SharedService} from '../../shared/shared.service';
 
 @Component({
   selector: 'app-search-toolbar',
@@ -11,11 +12,15 @@ export class SearchToolbarComponent implements OnInit {
 
   searchInput = '';
   lastSearch = '';
+  isShadowed = false;
 
-  constructor() {
+  constructor(
+    private sharedService: SharedService,
+  ) {
   }
 
   ngOnInit(): void {
+    window.addEventListener('scroll', () => this.isShadowed = this.sharedService.toggleToolbarShadow(this.isShadowed));
   }
 
   onSearchClickEnter(): void {

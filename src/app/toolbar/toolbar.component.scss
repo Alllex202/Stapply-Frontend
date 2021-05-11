@@ -1,6 +1,7 @@
 .toolbar {
+  height: 48px;
   display: flex;
-  position: sticky;
+  position: fixed;
   top: 0;
   justify-content: space-between;
   background-color: #fff;

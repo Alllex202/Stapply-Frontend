@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UrlsClient} from '../urls/client';
+import {SharedService} from '../shared/shared.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -12,12 +13,15 @@ export class ToolbarComponent implements OnInit {
   menuIsOpen = false;
   urlTrackedApps = UrlsClient.TrackedApps;
   urlSetting = UrlsClient.Settings;
+  isShadowed = false;
 
-
-  constructor() {
+  constructor(
+    private sharedService: SharedService,
+  ) {
   }
 
   ngOnInit(): void {
+    window.addEventListener('scroll', () => this.isShadowed = this.sharedService.toggleToolbarShadow(this.isShadowed));
   }
 
   menuOpened(): void {
@@ -27,5 +31,4 @@ export class ToolbarComponent implements OnInit {
   menuClosed(): void {
     this.menuIsOpen = false;
   }
-
 }

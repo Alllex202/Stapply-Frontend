@@ -1,4 +1,4 @@
-<mat-toolbar class="toolbar">
+<mat-toolbar class="toolbar" id="toolbar">
   <a [routerLink]="urlTrackedApps" class="logo">
     <svg class="logo-icon" width="117" height="36" viewBox="0 0 117 36" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -56,6 +56,7 @@
   <span class="mat-body-1 toolbar-title">{{title}}</span>
 
   <button
+    mat-button
     mat-icon-button
     class="menu-btn"
     [matMenuTriggerFor]="toolbarMenu"
@@ -74,7 +75,7 @@
       <mat-icon>settings</mat-icon>
       <span>Настройки</span>
     </a>
-    <a routerLink="#exit" mat-menu-item>
+    <a mat-menu-item>
       <mat-icon>logout</mat-icon>
       <span>Выход</span>
     </a>
