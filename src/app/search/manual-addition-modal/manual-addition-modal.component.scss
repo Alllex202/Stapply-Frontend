@@ -1,10 +1,18 @@
-h2.mat-title.dialog-title{
+h2.mat-title.dialog-title {
   margin-bottom: 20px;
 }
 
 .dialog-content {
   display: flex;
   flex-direction: column;
+
+  .dialog-form:not(:first-child) {
+    margin-bottom: 16px;
+  }
+
+  .dialog-form:first-child {
+    margin-bottom: 10px;
+  }
 
   .dialog-content-text {
     margin-bottom: 20px;

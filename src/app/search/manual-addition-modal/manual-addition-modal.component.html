@@ -2,24 +2,29 @@
 <div mat-dialog-content class="mat-subheading-2 dialog-content">
   <mat-form-field class="dialog-form" appearance="outline">
     <mat-label>Название приложения</mat-label>
-    <input matInput [(ngModel)]="newApp.name" autocomplete="off" placeholder="Название приложения"
-           name="nameApplication">
+    <input type="text" matInput [(ngModel)]="newApp.name" autocomplete="off" placeholder="Название приложения"
+           name="nameApplication" required>
+    <mat-error>Название не может быть пустым</mat-error>
   </mat-form-field>
   <span class="dialog-content-text">Ссылки:</span>
   <mat-form-field class="dialog-form" appearance="outline">
     <mat-label>Страница в App Store</mat-label>
-    <input matInput [(ngModel)]="newApp.linkAppStore" autocomplete="off" placeholder="Страница в App Store"
-           name="hrefAppStore">
+    <input type="url" matInput [(ngModel)]="newApp.linkAppStore" autocomplete="off" placeholder="Страница в App Store"
+           name="hrefAppStore" pattern="https:\/\/apps\.apple\.com\/ru\/app\/([a-zA-Z]+\/)?id[0-9]+">
+    <mat-error>Неверный формат ссылки</mat-error>
   </mat-form-field>
   <mat-form-field class="dialog-form" appearance="outline">
     <mat-label>Страница в Google Play</mat-label>
     <input matInput [(ngModel)]="newApp.linkGooglePlay" autocomplete="off" placeholder="Страница в Google Play"
-           name="hrefGooglePlay">
+           name="hrefGooglePlay"
+           pattern="https:\/\/play\.google\.com\/store\/apps\/details\?id=[a-zA-Z0-9.]+((&(hl|gl)=[a-zA-Z]+)?)+">
+    <mat-error>Неверный формат ссылки</mat-error>
   </mat-form-field>
   <mat-form-field class="dialog-form" appearance="outline">
     <mat-label>Страница в App Gallery</mat-label>
     <input matInput [(ngModel)]="newApp.linkAppGallery" autocomplete="off" placeholder="Страница в App Gallery"
-           name="hrefAppGallery">
+           name="hrefAppGallery" pattern="https:\/\/appgallery\.huawei\.com\/(#\/)?app\/[a-zA-Z0-9]+" disabled>
+    <mat-error>Неверный формат ссылки</mat-error>
   </mat-form-field>
 </div>
 <div class="dialog-actions-container">
