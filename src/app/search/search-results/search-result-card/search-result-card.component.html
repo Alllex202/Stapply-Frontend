@@ -32,9 +32,15 @@
     </div>
   </div>
   <mat-chip-list class="card-markets">
-    <mat-chip *ngIf="appData?.linkAppStore" class="chip chip-market">App Store</mat-chip>
-    <mat-chip *ngIf="appData?.linkGooglePlay" class="chip chip-market">Google Play</mat-chip>
-    <mat-chip *ngIf="appData?.linkAppGallery" class="chip chip-market">App Gallery</mat-chip>
+    <mat-chip *ngIf="appData?.linkAppStore" class="chip chip-market"
+              (click)="appData && openMarketInNewTab(appData.linkAppStore)">App Store
+    </mat-chip>
+    <mat-chip *ngIf="appData?.linkGooglePlay" class="chip chip-market"
+              (click)="appData && openMarketInNewTab(appData.linkGooglePlay)">Google Play
+    </mat-chip>
+    <mat-chip *ngIf="appData?.linkAppGallery" class="chip chip-market"
+              (click)="appData && openMarketInNewTab(appData.linkAppGallery)">App Gallery
+    </mat-chip>
   </mat-chip-list>
 </div>
 

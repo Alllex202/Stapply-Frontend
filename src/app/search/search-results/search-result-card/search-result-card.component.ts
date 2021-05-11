@@ -28,4 +28,11 @@ export class SearchResultCardComponent implements OnInit {
       this.isLoadingTrackingBtn = false;
     }, 2000);
   }
+
+  openMarketInNewTab(link: string): void {
+    if (!link || link === '') {
+      return;
+    }
+    window.open(link);
+  }
 }
