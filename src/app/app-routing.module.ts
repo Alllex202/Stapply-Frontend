@@ -6,7 +6,7 @@ import {SearchComponent} from './search/search.component';
 
 const routes: Routes = [
   {path: 'tracked', component: TrackedAppsComponent, data: {title: 'Отслеживаемые', toolbarShow: true}},
-  {path: 'search', component: SearchComponent, data: {toolbarShow: false}},
+  {path: 'search', component: SearchComponent, data: {title: 'Добавить в отслеживаемое', toolbarShow: false}},
   {path: '', redirectTo: '/tracked', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent, data: {title: 'Error', toolbarShow: true}}
 ];

@@ -12,7 +12,6 @@ export class SearchToolbarComponent implements OnInit {
 
   searchInput = '';
   lastSearch = '';
-  isShadowed = false;
 
   constructor(
     private sharedService: SharedService,
@@ -20,7 +19,7 @@ export class SearchToolbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.addEventListener('scroll', () => this.isShadowed = this.sharedService.toggleToolbarShadow(this.isShadowed));
+    window.addEventListener('scroll', this.sharedService.toggleToolbarShadow);
   }
 
   onSearchClickEnter(): void {

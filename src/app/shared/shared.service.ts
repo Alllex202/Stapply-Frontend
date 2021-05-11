@@ -8,15 +8,13 @@ export class SharedService {
   constructor() {
   }
 
-  toggleToolbarShadow(isShadowed: boolean): boolean {
+  toggleToolbarShadow(): void {
     const toolbarClasses = document.getElementById('toolbar')?.classList;
-    if (document.documentElement.scrollTop > 0 && !isShadowed) {
+    const isShadowed = toolbarClasses?.contains('toolbar-shadow');
+    if (document.documentElement.scrollTop > 5 && !isShadowed) {
       toolbarClasses?.add('toolbar-shadow');
-      return true;
-    } else if (document.documentElement.scrollTop <= 0 && isShadowed) {
+    } else if (document.documentElement.scrollTop <= 5 && isShadowed) {
       toolbarClasses?.remove('toolbar-shadow');
-      return false;
     }
-    return false;
   }
 }
