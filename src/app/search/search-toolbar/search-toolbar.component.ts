@@ -10,6 +10,7 @@ export class SearchToolbarComponent implements OnInit {
   @Output() onSearch = new EventEmitter<string>();
 
   searchInput = '';
+  lastSearch = '';
 
   constructor() {
   }
@@ -18,9 +19,10 @@ export class SearchToolbarComponent implements OnInit {
   }
 
   onSearchClickEnter(): void {
-    if (this.searchInput === '') {
+    if (this.searchInput === '' || this.searchInput === this.lastSearch) {
       return;
     }
+    this.lastSearch = this.searchInput;
     this.onSearch.emit(this.searchInput);
   }
 
