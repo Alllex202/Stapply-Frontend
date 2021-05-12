@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {SharedService} from '../../shared/shared.service';
 
 @Component({
@@ -9,9 +9,9 @@ import {SharedService} from '../../shared/shared.service';
 export class SearchToolbarComponent implements OnInit {
 
   @Output() onSearch = new EventEmitter<string>();
+  @Input() lastSearch: string | undefined;
 
   searchInput = '';
-  lastSearch = '';
 
   constructor(
     private sharedService: SharedService,
@@ -26,7 +26,6 @@ export class SearchToolbarComponent implements OnInit {
     if (this.searchInput === '' || this.searchInput === this.lastSearch) {
       return;
     }
-    this.lastSearch = this.searchInput;
     this.onSearch.emit(this.searchInput);
   }
 
