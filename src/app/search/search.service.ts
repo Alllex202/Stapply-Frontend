@@ -14,7 +14,7 @@ export class SearchService {
   ) {
   }
 
-  getSearchResult(input: string): Observable<Array<ISearchAppCart>> {
-    return this.http.get<ISearchAppCart[]>(UrlsApi.Search);
+  getSearchResult(query: string): Observable<Array<ISearchAppCart>> {
+    return this.http.get<ISearchAppCart[]>(`${UrlsApi.Search}/${query}`);
   }
 }

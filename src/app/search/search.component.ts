@@ -31,6 +31,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.isLoading = true;
         this.lastSearch = input;
         return this.searchService.getSearchResult(input).pipe(catchError(err => {
+          this.showSnackbarErrorSearch();
           this.lastSearch = '';
           return of([]);
         }));
@@ -43,9 +44,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       },
       error => {
         this.isLoading = false;
-        this.snackbar.open('При поиске произошла ошибка.', undefined, {
-          duration: 2000,
-        });
+        this.showSnackbarErrorSearch();
       });
   }
 
@@ -55,11 +54,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   search(input: string): void {
+    this.searchResult = [];
     this.search$.next(input);
   }
 
-  loadingPage(numPage: number): void {
-    // todo Релизовать подгрузку результатов поиска
+  showSnackbarErrorSearch(): void {
+    this.snackbar.open('При поиске произошла ошибка.', undefined, {
+      duration: 2000,
+    });
   }
 
   onTrackingApp(idApp: number): void {
