@@ -1,8 +1,8 @@
 <h2 mat-dialog-title class="mat-title dialog-title">Переименование</h2>
 <div mat-dialog-content class="mat-subheading-2 dialog-content">
   Введите новое название:
-  <mat-form-field class="dialog-form">
-    <input matInput [(ngModel)]="newName">
+  <mat-form-field class="dialog-form" appearance="outline">
+    <input matInput [(ngModel)]="newName" autocomplete="off" placeholder="Введите название">
   </mat-form-field>
 </div>
 <div class="dialog-actions-container">

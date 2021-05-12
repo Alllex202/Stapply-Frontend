@@ -17,7 +17,7 @@
       class="dialog-remove"
       (click)="onDeleteClick()"
       [disabled]="isLoading"
-      [ngStyle]="{'visibility':isLoading && 'hidden'}"
+      [ngStyle]="{'visibility':isLoading ?  'hidden' : 'visible'}"
     ><span class="text-uppercase">Удалить</span>
     </button>
     <div class="dialog-action-spinner-container" *ngIf="isLoading">

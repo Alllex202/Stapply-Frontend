@@ -10,7 +10,7 @@ import {UrlsClient} from '../../urls/client';
 })
 export class TrackedAppsListComponent implements OnInit, AfterViewInit {
 
-  urlSearch =  UrlsClient.Search;
+  urlSearch = UrlsClient.Search;
   trackedApps: Array<ITrackedAppCard> | undefined;
   isLoaded = false;
   cols = 0;
@@ -20,14 +20,16 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
   constructor(
     public trackedAppsService: TrackedAppsService
   ) {
-    trackedAppsService.getTrackedApps().subscribe(apps => {
+  }
+
+  ngOnInit(): void {
+    // в ngOnInit или в конструктор?
+    this.trackedAppsService.getTrackedApps().subscribe(apps => {
       this.trackedApps = apps;
       this.isLoaded = true;
       setTimeout(() => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
     });
-  }
 
-  ngOnInit(): void {
     this.btnCardAdd = document.getElementById('cardAdd');
     this.calculateCols();
   }

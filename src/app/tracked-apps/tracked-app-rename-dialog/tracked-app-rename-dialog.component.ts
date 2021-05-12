@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ITrackedAppCard} from '../../interfaces/interfaces';
+import {TrackedAppsService} from '../tracked-apps.service';
 // import {ITrackedAppCardRenameData} from '../../interfaces/interfaces';
 
 @Component({
@@ -14,6 +15,7 @@ export class TrackedAppRenameDialogComponent implements OnInit {
   newName = '';
 
   constructor(
+    private trackedAppsService: TrackedAppsService,
     public dialogRef: MatDialogRef<TrackedAppRenameDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ITrackedAppCard,
   ) {
@@ -22,12 +24,17 @@ export class TrackedAppRenameDialogComponent implements OnInit {
   onRenameClick(): void {
     // todo rename tracked app
     this.isLoading = true;
-    setTimeout(() => {
-      console.log('Rename http done');
-      this.isLoading = true;
 
-      this.dialogRef.close(this.newName);
-    }, 2000);
+    this.trackedAppsService.renameTrackedApp(this.data.id, this.newName).subscribe(res => {
+      console.log(res);
+      this.isLoading = false;
+    });
+    // setTimeout(() => {
+    //   console.log('Rename http done');
+    //   this.isLoading = true;
+    //
+    //   this.dialogRef.close(this.newName);
+    // }, 2000);
   }
 
   ngOnInit(): void {
