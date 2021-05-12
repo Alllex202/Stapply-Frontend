@@ -3,13 +3,13 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.0.
 
 Node.js version - 14.10.1
-(Npm version - 6.14.8)
+(npm version - 6.14.8)
 
 ## Installing Backend project
 
 Load and run backend server https://github.com/Sw24sX/StapplyBackend
 
-## Installing node.js and npm
+## Installing Node.js and npm
 
 If you already have a Node.js and npm installed, you can skip this point.
 
