@@ -2,13 +2,15 @@ import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
 import {TrackedAppsService} from '../tracked-apps.service';
 import {ITrackedAppCard} from '../../interfaces/interfaces';
 import {UrlsClient} from '../../urls/client';
+import {ReplaySubject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-tracked-apps-list',
   templateUrl: './tracked-apps-list.component.html',
   styleUrls: ['./tracked-apps-list.component.scss']
 })
-export class TrackedAppsListComponent implements OnInit, AfterViewInit {
+export class TrackedAppsListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   urlSearch = UrlsClient.Search;
   trackedApps: Array<ITrackedAppCard> | undefined;
@@ -16,6 +18,7 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
   cols = 0;
   btnCardAddMiniIsVisible: boolean | undefined;
   btnCardAdd: HTMLElement | null | undefined;
+  destroy$ = new ReplaySubject<any>(1);
 
   constructor(
     public trackedAppsService: TrackedAppsService
@@ -23,12 +26,13 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    // в ngOnInit или в конструктор?
-    this.trackedAppsService.getTrackedApps().subscribe(apps => {
-      this.trackedApps = apps;
-      this.isLoaded = true;
-      setTimeout(() => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
-    });
+    this.trackedAppsService.getTrackedApps()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(apps => {
+        this.trackedApps = apps;
+        this.isLoaded = true;
+        setTimeout(() => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
+      });
 
     this.btnCardAdd = document.getElementById('cardAdd');
     this.calculateCols();
@@ -39,6 +43,11 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
     window.addEventListener('resize', () => this.calculateCols());
     window.addEventListener('scroll', () => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
     window.addEventListener('resize', () => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   calculateCols(): void {

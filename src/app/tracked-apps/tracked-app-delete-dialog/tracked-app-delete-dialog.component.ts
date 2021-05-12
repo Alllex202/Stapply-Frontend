@@ -1,8 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ITrackedAppCard} from '../../interfaces/interfaces';
 import {TrackedAppsService} from '../tracked-apps.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {takeUntil} from 'rxjs/operators';
+import {ReplaySubject} from 'rxjs';
 
 // import {ITrackedAppCardDeleteData} from '../../interfaces/interfaces';
 
@@ -11,9 +13,10 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   templateUrl: './tracked-app-delete-dialog.component.html',
   styleUrls: ['./tracked-app-delete-dialog.component.scss']
 })
-export class TrackedAppDeleteDialogComponent implements OnInit {
+export class TrackedAppDeleteDialogComponent implements OnInit, OnDestroy {
 
   isLoading = false;
+  destroy$ = new ReplaySubject<any>(1);
 
   constructor(
     private trackedAppsService: TrackedAppsService,
@@ -26,19 +29,25 @@ export class TrackedAppDeleteDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   onDeleteClick(): void {
-    // todo delete tracked app
     this.isLoading = true;
 
-    this.trackedAppsService.deleteTrackedApp(this.data.id).subscribe(
-      res => {
-        this.dialogRef.close(true);
-      },
-      error => {
-        this.isLoading = false;
-        this.SnackBar.open(`Не удалось удалить. Попробуйте снова.`, undefined, {
-          duration: 2000,
+    this.trackedAppsService.deleteTrackedApp(this.data.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(
+        res => {
+          this.dialogRef.close(true);
+        },
+        error => {
+          this.isLoading = false;
+          this.SnackBar.open(`Не удалось удалить. Попробуйте снова.`, undefined, {
+            duration: 2000,
+          });
         });
-      });
   }
 }

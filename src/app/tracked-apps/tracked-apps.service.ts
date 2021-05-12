@@ -22,12 +22,10 @@ export class TrackedAppsService {
   renameTrackedApp(id: number, newName: string): Observable<any> {
     return this.httpClient.put(`${UrlsApi.TrackedApps}/${id}`, {
       name: newName
-    })
-      .pipe(catchError(err => throwError(err.error)));
+    });
   }
 
   deleteTrackedApp(id: number): Observable<any> {
-    return this.httpClient.delete(`${UrlsApi.TrackedApps}/${id}`)
-      .pipe(catchError(err => throwError(err.error)));
+    return this.httpClient.delete(`${UrlsApi.TrackedApps}/${id}`);
   }
 }
