@@ -20,7 +20,7 @@
       class="dialog-ok"
       (click)="onRenameClick()"
       [disabled]="isLoading || newName === '' || newName === data.name"
-      [ngStyle]="{'visibility':isLoading && 'hidden'}"
+      [ngStyle]="{'visibility':isLoading ? 'hidden' : 'visible'}"
     ><span class="text-uppercase">Ок</span>
     </button>
     <div class="dialog-action-spinner-container" *ngIf="isLoading">

@@ -2,6 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ITrackedAppCard} from '../../interfaces/interfaces';
 import {TrackedAppsService} from '../tracked-apps.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 // import {ITrackedAppCardRenameData} from '../../interfaces/interfaces';
 
 @Component({
@@ -18,6 +20,7 @@ export class TrackedAppRenameDialogComponent implements OnInit {
     private trackedAppsService: TrackedAppsService,
     public dialogRef: MatDialogRef<TrackedAppRenameDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ITrackedAppCard,
+    private SnackBar: MatSnackBar
   ) {
   }
 
@@ -25,16 +28,16 @@ export class TrackedAppRenameDialogComponent implements OnInit {
     // todo rename tracked app
     this.isLoading = true;
 
-    this.trackedAppsService.renameTrackedApp(this.data.id, this.newName).subscribe(res => {
-      console.log(res);
-      this.isLoading = false;
-    });
-    // setTimeout(() => {
-    //   console.log('Rename http done');
-    //   this.isLoading = true;
-    //
-    //   this.dialogRef.close(this.newName);
-    // }, 2000);
+    this.trackedAppsService.renameTrackedApp(this.data.id, this.newName).subscribe(
+      res => {
+        this.dialogRef.close(this.newName);
+      },
+      error => {
+        this.isLoading = false;
+        this.SnackBar.open(`Не удалось переименовать. Попробуйте снова.`, undefined, {
+          duration: 2000,
+        });
+      });
   }
 
   ngOnInit(): void {

@@ -20,8 +20,8 @@ export class TrackedAppsService {
   }
 
   renameTrackedApp(id: number, newName: string): Observable<any> {
-    return this.httpClient.delete(UrlsApi.TrackedApps, {
-      params: {}
+    return this.httpClient.put(`${UrlsApi.TrackedApps}/${id}`, {
+      name: newName
     })
       .pipe(catchError(err => throwError(err.error)));
   }

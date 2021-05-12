@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ITrackedAppCard} from '../../interfaces/interfaces';
 import {TrackedAppsService} from '../tracked-apps.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 // import {ITrackedAppCardDeleteData} from '../../interfaces/interfaces';
 
@@ -17,7 +18,8 @@ export class TrackedAppDeleteDialogComponent implements OnInit {
   constructor(
     private trackedAppsService: TrackedAppsService,
     public dialogRef: MatDialogRef<TrackedAppDeleteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ITrackedAppCard
+    @Inject(MAT_DIALOG_DATA) public data: ITrackedAppCard,
+    private SnackBar: MatSnackBar
   ) {
   }
 
@@ -30,24 +32,13 @@ export class TrackedAppDeleteDialogComponent implements OnInit {
 
     this.trackedAppsService.deleteTrackedApp(this.data.id).subscribe(
       res => {
-        console.log('done');
-        this.isLoading = false;
+        this.dialogRef.close(true);
       },
       error => {
-        console.log('error');
         this.isLoading = false;
-      },
-      () => {
-
-        console.log('complete');
-        this.isLoading = false;
+        this.SnackBar.open(`Не удалось удалить. Попробуйте снова.`, undefined, {
+          duration: 2000,
+        });
       });
-
-    // setTimeout(() => {
-    //   console.log('Delete http done');
-    //   this.isLoading = false;
-    //
-    //   this.dialogRef.close(true);
-    // }, 2000);
   }
 }
