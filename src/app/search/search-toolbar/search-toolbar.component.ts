@@ -8,7 +8,7 @@ import {SharedService} from '../../shared/shared.service';
 })
 export class SearchToolbarComponent implements OnInit {
 
-  @Output() onSearch = new EventEmitter<string>();
+  @Output() search = new EventEmitter<string>();
   @Input() lastSearch: string | undefined;
 
   searchInput = '';
@@ -23,10 +23,7 @@ export class SearchToolbarComponent implements OnInit {
   }
 
   onSearchClickEnter(): void {
-    if (this.searchInput === '' || this.searchInput === this.lastSearch) {
-      return;
-    }
-    this.onSearch.emit(this.searchInput);
+    this.search.emit(this.searchInput);
   }
 
   onClearInputClick(): void {

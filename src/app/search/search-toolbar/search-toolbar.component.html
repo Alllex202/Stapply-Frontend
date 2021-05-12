@@ -9,7 +9,7 @@
     <div class="search-form-container">
       <mat-form-field appearance="outline" class="search-form">
         <input matInput class="search-form-input" [(ngModel)]="searchInput" placeholder="Поиск приложений"
-               autocomplete="off" (keyup.enter)="onSearchClickEnter()">
+               autocomplete="off" (keydown.enter)="onSearchClickEnter()">
         <mat-icon matPrefix class="search-form-icon">search</mat-icon>
         <button mat-button mat-icon-button matSuffix [disableRipple]="false" *ngIf="searchInput"
                 (click)="onClearInputClick()" class="search-form-clear">
