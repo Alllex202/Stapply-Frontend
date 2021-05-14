@@ -6,6 +6,16 @@
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 
+  &:hover {
+    .card-content {
+      .card-action {
+        .btn-magic {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
   .card-content {
     height: 88px;
     width: 100%;
@@ -39,6 +49,11 @@
     }
 
     .card-action {
+      .btn-magic {
+        opacity: 0;
+        transition: .2s opacity;
+      }
+
       .card-tracking-btn {
       }
 

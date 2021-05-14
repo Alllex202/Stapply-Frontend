@@ -18,7 +18,7 @@ export interface ISearchAppCart {
   name: string;
   developer: string;
   avatarSrc: string;
-  isTracked: boolean;
+  tracking: boolean;
   linkAppStore: string;
   linkGooglePlay: string;
   linkAppGallery: string;

@@ -12,20 +12,19 @@
     </div>
     <div class="card-action">
       <button
-        *ngIf="!appData?.isTracked && !isLoadingTrackingBtn"
+        *ngIf="!appData?.tracking && !isLoadingTrackingBtn"
         mat-stroked-button
-        class="btn-outline card-tracking-btn"
+        class="btn-outline card-tracking-btn btn-magic"
         color="primary"
         (click)="onTrackingAppClick()"
       ><span class="text-uppercase">Отслеживать</span>
       </button>
       <button
-        *ngIf="appData?.isTracked && !isLoadingTrackingBtn"
-        mat-flat-button
+        *ngIf="appData?.tracking && !isLoadingTrackingBtn"
+        mat-button
         class="card-tracking-btn"
-        color="primary"
-        (click)="onTrackingAppClick()"
-      ><span class="text-uppercase">Отслеживать</span>
+        disabled
+      ><span class="text-uppercase">Отслеживается</span>
       </button>
       <div class="card-tracking-loading" *ngIf="isLoadingTrackingBtn">
         <mat-spinner diameter="36"></mat-spinner>

@@ -1,5 +1,9 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {ISearchAppCart} from '../../../interfaces/interfaces';
+import {SearchService} from '../../search.service';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {UrlsClient} from '../../../urls/client';
 
 @Component({
   selector: 'app-search-result-card',
@@ -14,22 +18,40 @@ export class SearchResultCardComponent implements OnInit {
 
   isLoadingTrackingBtn = false;
 
-  constructor() {
+  constructor(
+    private searchService: SearchService,
+    private router: Router,
+    private snackbar: MatSnackBar
+  ) {
   }
 
   ngOnInit(): void {
   }
 
   onTrackingAppClick(): void {
-    // todo реализовать запрос на сервер для кнопки отслеживания
     this.isLoadingTrackingBtn = true;
-    setTimeout(() => {
-      // this.onTrackingApp.emit(this.appData?.id);
-      if (this.appData !== undefined) {
-        this.appData.isTracked = !this.appData?.isTracked;
-      }
-      this.isLoadingTrackingBtn = false;
-    }, 2000);
+
+    if (this.appData) {
+      this.searchService.addNewAppOnTracking({
+        name: this.appData?.name,
+        linkGooglePlay: this.appData?.linkGooglePlay,
+        linkAppStore: this.appData?.linkAppStore,
+        linkAppGallery: this.appData?.linkAppGallery,
+      })
+        .subscribe(
+          res => {
+            this.snackbar.open(`“${this.appData?.name}“ добавлено в отслеживаемое`, undefined, {
+              duration: 2000,
+            });
+            this.router.navigate([UrlsClient.TrackedApps]);
+          },
+          error => {
+            this.isLoadingTrackingBtn = false;
+            this.snackbar.open('Что-то пошло не так :(', undefined, {
+              duration: 2000,
+            });
+          });
+    }
   }
 
   openMarketInNewTab(link: string): void {

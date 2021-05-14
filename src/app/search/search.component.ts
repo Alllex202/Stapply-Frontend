@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.search$.pipe(
-      filter((input: string) => input.length > 0 && input !== this.lastSearch),
+      // filter((input: string) => input.length > 0 && input !== this.lastSearch),
       debounceTime(400),
       switchMap((input: string) => {
         this.isLoading = true;
@@ -54,8 +54,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   search(input: string): void {
-    this.searchResult = [];
-    this.search$.next(input);
+    if (input.length > 0 && input !== this.lastSearch) {
+      this.searchResult = [];
+      this.search$.next(input);
+    }
   }
 
   showSnackbarErrorSearch(): void {

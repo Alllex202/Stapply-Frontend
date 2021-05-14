@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {ISearchAppCart} from '../interfaces/interfaces';
+import {INewApplication, ISearchAppCart} from '../interfaces/interfaces';
 import {UrlsApi} from '../urls/api';
 
 @Injectable({
@@ -16,5 +16,14 @@ export class SearchService {
 
   getSearchResult(query: string): Observable<Array<ISearchAppCart>> {
     return this.http.get<ISearchAppCart[]>(`${UrlsApi.Search}/${query}`);
+  }
+
+  addNewAppOnTracking(newApp: INewApplication): Observable<any> {
+    return this.http.post(UrlsApi.AddTrackedApp, {
+      appGalleryAppLink: newApp.linkAppGallery || null,
+      appStoreAppLik: newApp.linkAppStore || null,
+      googlePlayAppLink: newApp.linkGooglePlay || null,
+      name: newApp.name,
+    });
   }
 }

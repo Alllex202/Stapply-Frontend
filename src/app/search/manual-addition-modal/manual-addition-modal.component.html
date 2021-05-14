@@ -10,7 +10,7 @@
   <mat-form-field class="dialog-form" appearance="outline">
     <mat-label>Страница в App Store</mat-label>
     <input type="url" matInput [(ngModel)]="newApp.linkAppStore" autocomplete="off" placeholder="Страница в App Store"
-           name="hrefAppStore" pattern="https:\/\/apps\.apple\.com\/ru\/app\/([a-zA-Z]+\/)?id[0-9]+">
+           name="hrefAppStore" pattern="https:\/\/apps\.apple\.com\/ru\/app\/([a-zA-Z-0-9%]+\/)?id[0-9]+">
     <mat-error>Неверный формат ссылки</mat-error>
   </mat-form-field>
   <mat-form-field class="dialog-form" appearance="outline">
@@ -43,7 +43,7 @@
       class="dialog-ok"
       (click)="onCreateAppClick()"
       [disabled]="!(newApp.name && (newApp.linkAppStore || newApp.linkAppGallery || newApp.linkGooglePlay))"
-      [ngStyle]="{'visibility':isLoading && 'hidden'}"
+      [ngStyle]="{'visibility':isLoading ? 'hidden' : 'visible'}"
     >
       <span class="text-uppercase">Отслеживать</span>
     </button>
