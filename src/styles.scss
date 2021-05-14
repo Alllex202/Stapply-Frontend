@@ -110,4 +110,10 @@ button.mat-stroked-button.btn-outline {
   }
 }
 
+.truncated-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 
