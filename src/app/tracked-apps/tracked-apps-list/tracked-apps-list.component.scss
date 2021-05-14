@@ -13,14 +13,16 @@ button.card-add-mini {
   position: fixed;
   bottom: 30px;
   right: 24px;
+  opacity: 1;
 
-  transition: .2s bottom;
+  transition: .2s bottom, .2s opacity;
 
 
 }
 
 button.card-add-mini-hide {
   bottom: -70px;
+  opacity: 0;
 }
 
 //.apps-list{
