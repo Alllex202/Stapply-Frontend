@@ -13,14 +13,19 @@
     box-shadow: 0px 0.4px 0.8px rgba(0, 0, 0, 0.1), 0px 3px 6px rgba(0, 0, 0, 0.2);
   }
 
-  .app-card-image {
+  .app-card-image-wrapper {
+    width: 344px;
     height: 194px;
-    object-fit: cover;
-    cursor: pointer;
-    transition: .2s transform;
 
-    &:hover {
-      //transform: scale(1.1);
+    .app-card-image {
+      height: 194px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: .2s transform;
+
+      &:hover {
+        //transform: scale(1.1);
+      }
     }
   }
 
@@ -37,11 +42,11 @@
     }
   }
 
-  .app-card-header-title{
+  .app-card-header-title {
     max-width: 190px;
   }
 
-  .app-card-header-subtitle{
+  .app-card-header-subtitle {
     max-width: 190px;
   }
 
