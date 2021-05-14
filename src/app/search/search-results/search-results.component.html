@@ -1,6 +1,5 @@
 <div class="results-container">
-  <app-search-result-card *ngFor="let appData of searchResult" [appData]="appData"
-                          (onTrackingApp)="onTrackingAppClick($event)"></app-search-result-card>
+  <app-search-result-card *ngFor="let appData of searchResult" [appData]="appData"></app-search-result-card>
   <app-search-result-card *ngIf="isLoading" [isSkeleton]="true"></app-search-result-card>
   <app-search-result-card *ngIf="isLoading" [isSkeleton]="true"></app-search-result-card>
   <app-search-result-card *ngIf="isLoading" [isSkeleton]="true"></app-search-result-card>

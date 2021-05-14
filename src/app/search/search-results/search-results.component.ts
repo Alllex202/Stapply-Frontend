@@ -13,7 +13,7 @@ export class SearchResultsComponent implements OnInit {
 
   @Input() isLoading: boolean | undefined;
   @Input() searchResult: Array<ISearchAppCart> | undefined;
-  @Output() onTrackingApp = new EventEmitter<number>();
+  // @Output() onTrackingApp = new EventEmitter<number>();
 
   constructor(
     public dialog: MatDialog) {
@@ -30,7 +30,7 @@ export class SearchResultsComponent implements OnInit {
     });
   }
 
-  onTrackingAppClick(id: number): void {
-    this.onTrackingApp.emit(id);
-  }
+  // onTrackingAppClick(id: number): void {
+  //   this.onTrackingApp.emit(id);
+  // }
 }

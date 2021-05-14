@@ -10,7 +10,7 @@ export class SearchResultCardComponent implements OnInit {
 
   @Input() appData: ISearchAppCart | undefined;
   @Input() isSkeleton: boolean | undefined;
-  @Output() onTrackingApp = new EventEmitter<number>();
+  // @Output() onTrackingApp = new EventEmitter<number>();
 
   isLoadingTrackingBtn = false;
 
@@ -24,7 +24,10 @@ export class SearchResultCardComponent implements OnInit {
     // todo реализовать запрос на сервер для кнопки отслеживания
     this.isLoadingTrackingBtn = true;
     setTimeout(() => {
-      this.onTrackingApp.emit(this.appData?.id);
+      // this.onTrackingApp.emit(this.appData?.id);
+      if (this.appData !== undefined) {
+        this.appData.isTracked = !this.appData?.isTracked;
+      }
       this.isLoadingTrackingBtn = false;
     }, 2000);
   }

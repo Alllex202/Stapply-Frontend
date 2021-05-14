@@ -64,12 +64,12 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  onTrackingApp(idApp: number): void {
-    this.searchResult = this.searchResult.map(app => {
-      if (app.id === idApp) {
-        app.isTracked = !app.isTracked;
-      }
-      return app;
-    });
-  }
+  // onTrackingApp(idApp: number): void {
+  //   this.searchResult = this.searchResult.map(app => {
+  //     if (app.id === idApp) {
+  //       app.isTracked = !app.isTracked;
+  //     }
+  //     return app;
+  //   });
+  // }
 }
