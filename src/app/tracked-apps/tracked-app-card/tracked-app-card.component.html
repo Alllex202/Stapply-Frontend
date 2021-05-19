@@ -40,13 +40,13 @@
       mat-card-image
       class="app-card-image"
       [src]="appData?.imageSrc"
-      alt="twitch screen"
+      [alt]="appData?.name"
     >
   </div>
 
   <mat-card-header>
     <div mat-card-avatar class="app-card-header-avatar">
-      <img [src]="appData?.avatarSrc" alt="twitch">
+      <img [src]="appData?.avatarSrc" alt="icon">
     </div>
     <mat-card-title class="app-card-header-title truncated-text">
       {{appData?.name}}
