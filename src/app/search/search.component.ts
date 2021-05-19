@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SearchService} from './search.service';
+import {SearchService} from '../services/search.service';
 import {ISearchAppCart} from '../interfaces/interfaces';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {catchError, debounceTime, filter, switchMap, takeUntil} from 'rxjs/operators';
