@@ -13,6 +13,7 @@ export class ToolbarComponent implements OnInit {
   menuIsOpen = false;
   urlTrackedApps = UrlsClient.TrackedApps;
   urlSetting = UrlsClient.Settings;
+  isShadedBottom = false;
 
   constructor(
     private sharedService: SharedService,
@@ -20,7 +21,8 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.addEventListener('scroll', this.sharedService.toggleToolbarShadow);
+    // window.addEventListener('scroll', this.sharedService.toggleToolbarShadow);
+    window.addEventListener('scroll', () => this.isShadedBottom = this.sharedService.checkScroll());
   }
 
   menuOpened(): void {

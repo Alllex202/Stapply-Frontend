@@ -10,6 +10,7 @@ export class SearchToolbarComponent implements OnInit {
 
   @Output() search = new EventEmitter<string>();
   @Input() lastSearch: string | undefined;
+  isShadedBottom = false;
 
   searchInput = '';
 
@@ -19,7 +20,8 @@ export class SearchToolbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.addEventListener('scroll', this.sharedService.toggleToolbarShadow);
+    // window.addEventListener('scroll', this.sharedService.toggleToolbarShadow);
+    window.addEventListener('scroll', () => this.isShadedBottom = this.sharedService.checkScroll());
   }
 
   onSearchClickEnter(): void {
