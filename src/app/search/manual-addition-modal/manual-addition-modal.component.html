@@ -1,54 +1,64 @@
 <h2 mat-dialog-title class="mat-title dialog-title">Добавить вручную</h2>
-<div mat-dialog-content class="mat-subheading-2 dialog-content">
-  <mat-form-field class="dialog-form" appearance="outline">
-    <mat-label>Название приложения</mat-label>
-    <input type="text" matInput [(ngModel)]="newApp.name" autocomplete="off" placeholder="Название приложения"
-           name="nameApplication" required>
-    <mat-error>Название не может быть пустым</mat-error>
-  </mat-form-field>
-  <span class="dialog-content-text">Ссылки:</span>
-  <mat-form-field class="dialog-form" appearance="outline">
-    <mat-label>Страница в App Store</mat-label>
-    <input type="url" matInput [(ngModel)]="newApp.linkAppStore" autocomplete="off" placeholder="Страница в App Store"
-           name="hrefAppStore" pattern="https:\/\/apps\.apple\.com\/ru\/app\/([a-zA-Z-0-9%]+\/)?id[0-9]+">
-    <mat-error>Неверный формат ссылки</mat-error>
-  </mat-form-field>
-  <mat-form-field class="dialog-form" appearance="outline">
-    <mat-label>Страница в Google Play</mat-label>
-    <input matInput [(ngModel)]="newApp.linkGooglePlay" autocomplete="off" placeholder="Страница в Google Play"
-           name="hrefGooglePlay"
-           pattern="https:\/\/play\.google\.com\/store\/apps\/details\?id=[a-zA-Z0-9.]+((&(hl|gl)=[a-zA-Z]+)?)+">
-    <mat-error>Неверный формат ссылки</mat-error>
-  </mat-form-field>
-  <mat-form-field class="dialog-form" appearance="outline">
-    <mat-label>Страница в App Gallery</mat-label>
-    <input matInput [(ngModel)]="newApp.linkAppGallery" autocomplete="off" placeholder="Страница в App Gallery"
-           name="hrefAppGallery" pattern="https:\/\/appgallery\.huawei\.com\/(#\/)?app\/[a-zA-Z0-9]+" disabled>
-    <mat-error>Неверный формат ссылки</mat-error>
-  </mat-form-field>
-</div>
-<div class="dialog-actions-container">
-  <div class="dialog-actions">
-    <button
-      mat-stroked-button
-      class="dialog-btn-outline"
-      mat-dialog-close color="primary"
-      [disabled]="isLoading"
-    >
-      <span class="text-uppercase">Отмена</span>
-    </button>
-    <button
-      mat-flat-button
-      color="primary"
-      class="dialog-ok"
-      (click)="onCreateAppClick()"
-      [disabled]="!(newApp.name && (newApp.linkAppStore || newApp.linkAppGallery || newApp.linkGooglePlay))"
-      [ngStyle]="{'visibility':isLoading ? 'hidden' : 'visible'}"
-    >
-      <span class="text-uppercase">Отслеживать</span>
-    </button>
-    <div class="dialog-action-spinner-container" *ngIf="isLoading">
-      <mat-spinner diameter="36"></mat-spinner>
+<form [formGroup]="formNewApp" novalidate (ngSubmit)="onCreateNewApp()" #form="ngForm">
+  <div mat-dialog-content class="mat-subheading-2 dialog-content">
+    <mat-form-field class="dialog-form" appearance="outline">
+      <mat-label>Название приложения</mat-label>
+      <input matInput formControlName="appName" autocomplete="off" placeholder="Название приложения"
+             name="appName">
+      <mat-error>Название не может быть короче 3х символов</mat-error>
+    </mat-form-field>
+    <div class="dialog-content-text">Ссылки:
+      <div [ngStyle]="{
+          'color': 'red',
+          'font-size': '12px',
+          'visibility': (formNewApp.hasError('oneLinkRequired') && form.submitted) ? 'visible' : 'hidden'
+        }">
+        Нужно указать хотя бы одну ссылку
+      </div>
+    </div>
+    <mat-form-field class="dialog-form" appearance="outline">
+      <mat-label>Страница в App Store</mat-label>
+      <input matInput formControlName="linkAppStore" autocomplete="off" placeholder="Страница в App Store"
+             name="linkAppStore">
+      <mat-error>
+        Неверный формат ссылки
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="dialog-form" appearance="outline">
+      <mat-label>Страница в Google Play</mat-label>
+      <input matInput formControlName="linkGooglePlay" autocomplete="off" placeholder="Страница в Google Play"
+             name="linkGooglePlay">
+      <mat-error>Неверный формат ссылки</mat-error>
+    </mat-form-field>
+    <mat-form-field class="dialog-form" appearance="outline">
+      <mat-label>Страница в App Gallery</mat-label>
+      <input matInput formControlName="linkAppGallery" autocomplete="off" placeholder="Страница в App Gallery"
+             name="linkAppGallery">
+      <mat-error>Неверный формат ссылки</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="dialog-actions-container">
+    <div class="dialog-actions">
+      <button
+        mat-stroked-button
+        class="dialog-btn-outline"
+        mat-dialog-close color="primary"
+        [disabled]="isLoading"
+      >
+        <span class="text-uppercase">Отмена</span>
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        class="dialog-ok"
+        [ngStyle]="{'visibility': isLoading ? 'hidden' : 'visible'}"
+      >
+        <span class="text-uppercase">Отслеживать</span>
+      </button>
+      <div class="dialog-action-spinner-container" *ngIf="isLoading">
+        <mat-spinner diameter="36"></mat-spinner>
+      </div>
     </div>
   </div>
-</div>
+</form>
+

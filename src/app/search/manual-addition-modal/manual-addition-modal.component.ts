@@ -5,6 +5,7 @@ import {SearchService} from '../../services/search.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UrlsClient} from '../../urls/client';
+import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-manual-addition-modal',
@@ -14,40 +15,68 @@ import {UrlsClient} from '../../urls/client';
 export class ManualAdditionModalComponent implements OnInit {
 
   isLoading = false;
-  newApp: INewApplication = {
-    name: '',
-    linkAppGallery: '',
-    linkAppStore: '',
-    linkGooglePlay: '',
-  };
+  formNewApp = this.formBuilder.group({
+    appName: ['', [Validators.required, Validators.minLength(3)]],
+    linkGooglePlay: ['',
+      Validators.pattern(/https:\/\/play\.google\.com\/store\/apps\/details\?id=[a-zA-Z0-9.]+((&(hl|gl)=[a-zA-Z]+)?)+/)],
+    linkAppGallery: [{value: '', disabled: true},
+      Validators.pattern(/https:\/\/appgallery\.huawei\.com\/(#\/)?app\/[a-zA-Z0-9]+/)],
+    linkAppStore: ['',
+      Validators.pattern(/https:\/\/apps\.apple\.com\/ru\/app\/([a-zA-Z-0-9%]+\/)?id[0-9]+/)],
+  }, {
+    updateOn: 'submit',
+    validators: this.validatorOneLinkRequired(['linkGooglePlay', 'linkAppGallery', 'linkAppStore']),
+  });
 
   constructor(
-    public dialogRef: MatDialogRef<ManualAdditionModalComponent>,
+    private dialogRef: MatDialogRef<ManualAdditionModalComponent>,
     private searchService: SearchService,
     private router: Router,
     private snackbar: MatSnackBar,
+    private formBuilder: FormBuilder,
   ) {
   }
 
   ngOnInit(): void {
   }
 
-  onCreateAppClick(): void {
-    this.isLoading = true;
-    this.searchService.addNewAppOnTracking(this.newApp)
-      .subscribe(
-        res => {
-          this.snackbar.open(`“${this.newApp.name}“ добавлено в отслеживаемое`, undefined, {
-            duration: 2000,
+  validatorOneLinkRequired(controls: string[]): object {
+    return (group: FormGroup): ValidationErrors | null => {
+      const hasAtLeastOne = group && group.controls && controls
+        .some(e => !Validators.required(group.controls[e]));
+
+      return hasAtLeastOne ? null : {
+        oneLinkRequired: true,
+      };
+    };
+  }
+
+  onCreateNewApp(): void {
+    if (this.formNewApp.valid) {
+      this.isLoading = true;
+      const newApp: INewApplication = {
+        name: this.formNewApp.value.appName,
+        linkAppGallery: this.formNewApp.value.linkAppGallery ?? '',
+        linkGooglePlay: this.formNewApp.value.linkGooglePlay ?? '',
+        linkAppStore: this.formNewApp.value.linkAppStore ?? '',
+      };
+      this.searchService.addNewAppOnTracking(newApp)
+        .subscribe(
+          res => {
+            this.snackbar.open(`“${newApp.name}“ добавлено в отслеживаемое`, undefined, {
+              duration: 2000,
+            });
+            this.router.navigate([UrlsClient.TrackedApps]);
+            this.dialogRef.close();
+          },
+          error => {
+            this.isLoading = false;
+            this.snackbar.open('Что-то пошло не так :(', undefined, {
+              duration: 2000,
+            });
           });
-          this.router.navigate([UrlsClient.TrackedApps]);
-          this.dialogRef.close();
-        },
-        error => {
-          this.isLoading = false;
-          this.snackbar.open('Что-то пошло не так :(', undefined, {
-            duration: 2000,
-          });
-        });
+    } else {
+      this.formNewApp.markAllAsTouched();
+    }
   }
 }

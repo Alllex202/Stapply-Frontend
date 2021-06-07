@@ -5,6 +5,7 @@ import {TrackedAppsService} from '../../services/tracked-apps.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {takeUntil} from 'rxjs/operators';
 import {ReplaySubject} from 'rxjs';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-tracked-app-rename-dialog',
@@ -14,19 +15,22 @@ import {ReplaySubject} from 'rxjs';
 export class TrackedAppRenameDialogComponent implements OnInit, OnDestroy {
 
   isLoading = false;
-  newName = '';
   destroy$ = new ReplaySubject<any>(1);
+  formRename = this.formBuilder.group({
+    newName: ['', [Validators.required, Validators.minLength(3)]],
+  }, {updateOn: 'submit'});
 
   constructor(
     private trackedAppsService: TrackedAppsService,
-    public dialogRef: MatDialogRef<TrackedAppRenameDialogComponent>,
+    private dialogRef: MatDialogRef<TrackedAppRenameDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ITrackedAppCard,
-    private SnackBar: MatSnackBar
+    private SnackBar: MatSnackBar,
+    private formBuilder: FormBuilder,
   ) {
   }
 
   ngOnInit(): void {
-    this.newName = this.data?.name;
+    this.formRename.setValue({newName: this.data?.name});
   }
 
   ngOnDestroy(): void {
@@ -34,20 +38,27 @@ export class TrackedAppRenameDialogComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  onRenameClick(): void {
-    this.isLoading = true;
-
-    this.trackedAppsService.renameTrackedApp(this.data.id, this.newName)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(
-        res => {
-          this.dialogRef.close(this.newName);
-        },
-        error => {
-          this.isLoading = false;
-          this.SnackBar.open(`Не удалось переименовать. Попробуйте снова.`, undefined, {
-            duration: 2000,
+  onRename(): void {
+    if (this.formRename.invalid) {
+      this.formRename.markAllAsTouched();
+    } else {
+      if (this.formRename.value.newName === this.data?.name) {
+        this.dialogRef.close(this.formRename.value.newName);
+        return;
+      }
+      this.isLoading = true;
+      this.trackedAppsService.renameTrackedApp(this.data.id, this.formRename.value.newName)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(
+          res => {
+            this.dialogRef.close(this.formRename.value.newName);
+          },
+          error => {
+            this.isLoading = false;
+            this.SnackBar.open(`Не удалось переименовать. Попробуйте снова.`, undefined, {
+              duration: 2000,
+            });
           });
-        });
+    }
   }
 }
