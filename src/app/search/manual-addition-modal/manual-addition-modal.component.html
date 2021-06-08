@@ -1,5 +1,5 @@
 <h2 mat-dialog-title class="mat-title dialog-title">Добавить вручную</h2>
-<form [formGroup]="formNewApp" novalidate (ngSubmit)="onCreateNewApp()" #form="ngForm">
+<form [formGroup]="formNewApp" novalidate (ngSubmit)="onCreateNewApp()">
   <div mat-dialog-content class="mat-subheading-2 dialog-content">
     <mat-form-field class="dialog-form" appearance="outline">
       <mat-label>Название приложения</mat-label>
@@ -7,21 +7,20 @@
              name="appName">
       <mat-error>Название не может быть короче 3х символов</mat-error>
     </mat-form-field>
-    <div class="dialog-content-text">Ссылки:
-      <div [ngStyle]="{
-          'color': 'red',
-          'font-size': '12px',
-          'visibility': (formNewApp.hasError('oneLinkRequired') && form.submitted) ? 'visible' : 'hidden'
-        }">
-        Нужно указать хотя бы одну ссылку
-      </div>
-    </div>
+    <span class="dialog-content-text">
+      Ссылки:
+    </span>
     <mat-form-field class="dialog-form" appearance="outline">
       <mat-label>Страница в App Store</mat-label>
       <input matInput formControlName="linkAppStore" autocomplete="off" placeholder="Страница в App Store"
              name="linkAppStore">
       <mat-error>
-        Неверный формат ссылки
+        <span *ngIf="formNewApp.controls.linkAppStore.hasError('oneLinkRequired')">
+          Нужно указать хотя бы одну ссылку
+        </span>
+        <span *ngIf="formNewApp.controls.linkAppStore.hasError('pattern')">
+          Неверный формат ссылки
+        </span>
       </mat-error>
     </mat-form-field>
     <mat-form-field class="dialog-form" appearance="outline">

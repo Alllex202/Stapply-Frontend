@@ -45,9 +45,16 @@ export class ManualAdditionModalComponent implements OnInit {
       const hasAtLeastOne = group && group.controls && controls
         .some(e => !Validators.required(group.controls[e]));
 
-      return hasAtLeastOne ? null : {
-        oneLinkRequired: true,
-      };
+      if (!hasAtLeastOne) {
+        group.controls.linkAppStore.setErrors({oneLinkRequired: true});
+      } else {
+        if (group.controls.linkAppStore.hasError('oneLinkRequired')) {
+          group.controls.linkAppStore.setErrors({oneLinkRequired: null});
+          group.controls.linkAppStore.updateValueAndValidity();
+        }
+      }
+
+      return null;
     };
   }
 
