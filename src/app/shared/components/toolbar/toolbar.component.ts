@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {UrlsClient} from '../urls/client';
-import {SharedService} from '../shared/shared.service';
+import {UrlsClient} from '../../../urls/client';
+import {SharedService} from '../../services/shared.service';
 
 @Component({
   selector: 'app-toolbar',

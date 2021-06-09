@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
-import {TrackedAppsService} from '../../services/tracked-apps.service';
-import {ITrackedAppCard} from '../../interfaces/interfaces';
-import {UrlsClient} from '../../urls/client';
+import {TrackedAppsService} from '../../../services/tracked-apps.service';
+import {ITrackedAppCard} from '../../../interfaces/interfaces';
+import {UrlsClient} from '../../../urls/client';
 import {ReplaySubject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 

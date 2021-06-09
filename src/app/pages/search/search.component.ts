@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {SearchService} from '../services/search.service';
-import {ISearchAppCart} from '../interfaces/interfaces';
+import {SearchService} from '../../services/search.service';
+import {ISearchAppCart} from '../../interfaces/interfaces';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {catchError, debounceTime, filter, switchMap, takeUntil} from 'rxjs/operators';
 import {Subject, of, ReplaySubject} from 'rxjs';

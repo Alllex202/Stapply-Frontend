@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UrlsClient} from '../../../urls/client';
+import {UrlsClient} from '../../../../urls/client';
 
 @Component({
   selector: 'app-tracked-app-card-add',

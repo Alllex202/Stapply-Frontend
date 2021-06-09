@@ -3,8 +3,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {TrackedAppDeleteDialogComponent} from '../tracked-app-delete-dialog/tracked-app-delete-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TrackedAppRenameDialogComponent} from '../tracked-app-rename-dialog/tracked-app-rename-dialog.component';
-import {ITrackedAppCard} from '../../interfaces/interfaces';
-import {UrlsClient} from '../../urls/client';
+import {ITrackedAppCard} from '../../../interfaces/interfaces';
+import {UrlsClient} from '../../../urls/client';
 
 @Component({
   selector: 'app-tracked-app-card',

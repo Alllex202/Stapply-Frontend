@@ -1,8 +1,8 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {ManualAdditionModalComponent} from '../manual-addition-modal/manual-addition-modal.component';
-import {ISearchAppCart} from '../../interfaces/interfaces';
-import {SearchService} from '../../services/search.service';
+import {ISearchAppCart} from '../../../interfaces/interfaces';
+import {SearchService} from '../../../services/search.service';
 
 @Component({
   selector: 'app-search-results',

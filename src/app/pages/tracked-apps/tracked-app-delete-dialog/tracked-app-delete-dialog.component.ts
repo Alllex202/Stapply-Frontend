@@ -1,7 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ITrackedAppCard} from '../../interfaces/interfaces';
-import {TrackedAppsService} from '../../services/tracked-apps.service';
+import {ITrackedAppCard} from '../../../interfaces/interfaces';
+import {TrackedAppsService} from '../../../services/tracked-apps.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {takeUntil} from 'rxjs/operators';
 import {ReplaySubject} from 'rxjs';

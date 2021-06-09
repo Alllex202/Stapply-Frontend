@@ -1,8 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {TrackedAppsComponent} from './tracked-apps/tracked-apps.component';
-import {SearchComponent} from './search/search.component';
+import {PageNotFoundComponent} from './pages/page-not-found/page-not-found.component';
+import {TrackedAppsComponent} from './pages/tracked-apps/tracked-apps.component';
+import {SearchComponent} from './pages/search/search.component';
 
 const routes: Routes = [
   {path: 'tracked', component: TrackedAppsComponent, data: {title: 'Отслеживаемые', toolbarShow: true}},

@@ -1,9 +1,9 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {ISearchAppCart} from '../../../interfaces/interfaces';
-import {SearchService} from '../../../services/search.service';
+import {ISearchAppCart} from '../../../../interfaces/interfaces';
+import {SearchService} from '../../../../services/search.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {UrlsClient} from '../../../urls/client';
+import {UrlsClient} from '../../../../urls/client';
 
 @Component({
   selector: 'app-search-result-card',

@@ -1,5 +1,5 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import {SharedService} from '../../shared/shared.service';
+import {SharedService} from '../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-search-toolbar',
