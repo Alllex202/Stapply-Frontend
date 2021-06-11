@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UrlsApi} from '../urls/api';
+import {LocalStorageService} from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class AuthService {
   isLoggedIn = false;
   user: any | null = null;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private ls: LocalStorageService) {
   }
 
   login(username: string, password: string): Observable<{ user: string, token: string }> {
@@ -24,7 +26,7 @@ export class AuthService {
   }
 
   checkLoggedIn(): boolean {
-    this.isLoggedIn = !!localStorage.getItem('TokenAuth');
+    this.isLoggedIn = !!this.ls.getToken();
     if (!this.isLoggedIn) {
       this.user = null;
     }
@@ -32,12 +34,12 @@ export class AuthService {
   }
 
   setToken(token: string): void {
-    localStorage.setItem('TokenAuth', token);
+    this.ls.setToken(token);
     this.isLoggedIn = true;
   }
 
   removeToken(): void {
-    localStorage.removeItem('TokenAuth');
+    this.ls.removeToken();
     this.isLoggedIn = false;
     this.user = null;
   }
