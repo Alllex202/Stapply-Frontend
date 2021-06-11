@@ -23,6 +23,8 @@ export class AuthService {
 
   logout(): void {
     this.removeToken();
+    this.isLoggedIn = false;
+    this.user = null;
   }
 
   checkLoggedIn(): boolean {
@@ -33,6 +35,10 @@ export class AuthService {
     return this.isLoggedIn;
   }
 
+  getToken(): string | null {
+    return this.ls.getToken();
+  }
+
   setToken(token: string): void {
     this.ls.setToken(token);
     this.isLoggedIn = true;
@@ -40,7 +46,5 @@ export class AuthService {
 
   removeToken(): void {
     this.ls.removeToken();
-    this.isLoggedIn = false;
-    this.user = null;
   }
 }

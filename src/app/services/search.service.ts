@@ -13,21 +13,25 @@ export class SearchService {
 
   constructor(
     private http: HttpClient,
+    private auth: AuthService,
     private ls: LocalStorageService,
   ) {
   }
 
   getSearchResult(query: string): Observable<Array<ISearchAppCart>> {
     return this.http.get<ISearchAppCart[]>(`${UrlsApi.Search}/${query}`,
-      {headers: new HttpHeaders({Authorization: `Bearer_${this.ls.getToken()}`})});
+      {headers: new HttpHeaders({Authorization: `Bearer_${this.auth.getToken()}`})}
+    );
   }
 
   addNewAppOnTracking(newApp: INewApplication): Observable<any> {
     return this.http.post(UrlsApi.AddTrackedApp, {
-      appGalleryAppLink: newApp.linkAppGallery || null,
-      appStoreAppLik: newApp.linkAppStore || null,
-      googlePlayAppLink: newApp.linkGooglePlay || null,
-      name: newApp.name,
-    }, {headers: new HttpHeaders({Authorization: `Bearer_${this.ls.getToken()}`})});
+        appGalleryAppLink: newApp.linkAppGallery || null,
+        appStoreAppLik: newApp.linkAppStore || null,
+        googlePlayAppLink: newApp.linkGooglePlay || null,
+        name: newApp.name,
+      },
+      {headers: new HttpHeaders({Authorization: `Bearer_${this.auth.getToken()}`})}
+    );
   }
 }

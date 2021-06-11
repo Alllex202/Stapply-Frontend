@@ -13,13 +13,14 @@ export class TrackedAppsService {
 
   constructor(
     private httpClient: HttpClient,
+    private auth: AuthService,
     private ls: LocalStorageService,
   ) {
   }
 
   getTrackedApps(): Observable<Array<ITrackedAppCard>> {
     return this.httpClient.get<ITrackedAppCard[]>(UrlsApi.TrackedApps,
-      {headers: new HttpHeaders({Authorization: `Bearer_${this.ls.getToken()}`})}
+      {headers: new HttpHeaders({Authorization: `Bearer_${this.auth.getToken()}`})}
     );
   }
 
@@ -27,11 +28,13 @@ export class TrackedAppsService {
     return this.httpClient.put(`${UrlsApi.TrackedApps}/${id}`, {
         name: newName
       },
-      {headers: new HttpHeaders({Authorization: `Bearer_${this.ls.getToken()}`})});
+      {headers: new HttpHeaders({Authorization: `Bearer_${this.auth.getToken()}`})}
+    );
   }
 
   deleteTrackedApp(id: number): Observable<any> {
     return this.httpClient.delete(`${UrlsApi.TrackedApps}/${id}`,
-      {headers: new HttpHeaders({Authorization: `Bearer_${this.ls.getToken()}`})});
+      {headers: new HttpHeaders({Authorization: `Bearer_${this.auth.getToken()}`})}
+    );
   }
 }
