@@ -36,6 +36,7 @@ import { ManualAdditionModalComponent } from './pages/search/manual-addition-mod
 import { SearchResultCardComponent } from './pages/search/search-results/search-result-card/search-result-card.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { LoginComponent } from './pages/login/login.component';
+import { TestComponent } from './pages/test/test.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { LoginComponent } from './pages/login/login.component';
     ManualAdditionModalComponent,
     SearchResultCardComponent,
     LoginComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,

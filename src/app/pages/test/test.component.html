@@ -1,0 +1,7 @@
+<div class="wrapper">
+  <select [(ngModel)]="method">
+    <option *ngFor="let e of methods" [ngValue]="e.method">{{e.method}}</option>
+  </select>
+  <input type="text" [(ngModel)]="url" name="url" placeholder="url">
+  <button (click)="click()">Click</button>
+</div>
