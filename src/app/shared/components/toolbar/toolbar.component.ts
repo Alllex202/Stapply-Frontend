@@ -42,7 +42,7 @@ export class ToolbarComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-  isShowedMenu(): boolean {
+  isLoggedIn(): boolean {
     return this.auth.isLoggedIn;
   }
 }

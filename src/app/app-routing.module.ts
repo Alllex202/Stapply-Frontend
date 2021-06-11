@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: 'settings', component: PageNotFoundComponent, canActivate: [AuthGuard], data: {title: 'Настройки'}},
   {path: 'login', component: LoginComponent, data: {title: 'Вход'}},
   {path: 'register', component: PageNotFoundComponent, data: {title: 'Регистрация'}},
+  {path: 'landing', component: PageNotFoundComponent, data: {title: 'Лендинг'}},
   {path: '**', component: PageNotFoundComponent, data: {title: 'Error'}},
 ];
 
