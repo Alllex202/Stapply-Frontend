@@ -35,6 +35,7 @@ import { SearchResultsComponent } from './pages/search/search-results/search-res
 import { ManualAdditionModalComponent } from './pages/search/manual-addition-modal/manual-addition-modal.component';
 import { SearchResultCardComponent } from './pages/search/search-results/search-result-card/search-result-card.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {MatChipsModule} from '@angular/material/chips';
     SearchResultsComponent,
     ManualAdditionModalComponent,
     SearchResultCardComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

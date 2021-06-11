@@ -63,6 +63,7 @@
     (menuOpened)="menuOpened()"
     (menuClosed)="menuClosed()"
     [color]="menuIsOpen && 'primary'"
+    *ngIf="isShowedMenu()"
   >
     <mat-icon>account_circle</mat-icon>
   </button>
@@ -71,13 +72,13 @@
     <div class="menu-email">
       <span>mail.mail@gmail.com</span>
     </div>
-    <a [routerLink]="urlSetting" mat-menu-item>
+    <span [routerLink]="urlSetting" mat-menu-item>
       <mat-icon>settings</mat-icon>
       <span>Настройки</span>
-    </a>
-    <a mat-menu-item>
+    </span>
+    <span mat-menu-item (click)="logout()">
       <mat-icon>logout</mat-icon>
       <span>Выход</span>
-    </a>
+    </span>
   </mat-menu>
 </mat-toolbar>

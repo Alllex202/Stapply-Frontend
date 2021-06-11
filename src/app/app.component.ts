@@ -1,19 +1,21 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router, RoutesRecognized} from '@angular/router';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   toolbarShow = true;
   title = '';
 
   constructor(
     private titleService: Title,
-    public router: Router,
+    private router: Router,
+    private auth: AuthService,
   ) {
     router.events.subscribe(event => {
       if (event instanceof RoutesRecognized) {
@@ -24,6 +26,9 @@ export class AppComponent {
         titleService.setTitle('Stapply - ' + this.title);
       }
     });
+  }
 
+  ngOnInit(): void {
+    this.auth.checkLoggedIn();
   }
 }
