@@ -10,16 +10,17 @@ import {UrlsApi} from '../../urls/api';
 })
 export class TestComponent implements OnInit {
 
-  methods = [
-    {method: 'get'},
-    {method: 'post'},
-    {method: 'delete'},
-    {method: 'put'},
-    {method: 'patch'},
-  ];
+  methods: { [method: string]: { name: string, func: (headers: HttpHeaders) => void } } = {
+    GET: {name: 'GET', func: (headers) => this.get(headers)},
+    POST: {name: 'POST', func: (headers) => this.post(headers)},
+    DELETE: {name: 'DELETE', func: (headers) => this.delete(headers)},
+    PUT: {name: 'PUT', func: (headers) => this.put(headers)},
+    PATCH: {name: 'PATCH', func: (headers) => this.patch(headers)},
+  };
+  methodsList = Object.values(this.methods).map(e => e.name);
+  method = this.methodsList[0];
 
   url = UrlsApi.GetCurrentUser;
-  method = this.methods[0].method;
 
   constructor(
     private http: HttpClient,
@@ -36,66 +37,76 @@ export class TestComponent implements OnInit {
     if (token) {
       headers = headers.append('Authorization', `Bearer_${token}`);
     }
-    if (this.method === 'get') {
-      this.http
-        .get(this.url,
-          {headers}
-        )
-        .subscribe(
-          res => {
-            console.log(res);
-          },
-          err => {
-            console.log(err);
-          });
-    } else if (this.method === 'post') {
-      this.http
-        .post(this.url, {},
-          {headers}
-        )
-        .subscribe(
-          res => {
-            console.log(res);
-          },
-          err => {
-            console.log(err);
-          });
-    } else if (this.method === 'delete') {
-      this.http
-        .delete(this.url,
-          {headers}
-        )
-        .subscribe(
-          res => {
-            console.log(res);
-          },
-          err => {
-            console.log(err);
-          });
-    } else if (this.method === 'put') {
-      this.http
-        .put(this.url, {},
-          {headers}
-        )
-        .subscribe(
-          res => {
-            console.log(res);
-          },
-          err => {
-            console.log(err);
-          });
-    } else if (this.method === 'patch') {
-      this.http
-        .patch(this.url, {},
-          {headers}
-        )
-        .subscribe(
-          res => {
-            console.log(res);
-          },
-          err => {
-            console.log(err);
-          });
-    }
+    this.methods[this.method].func(headers);
+  }
+
+  get(headers: HttpHeaders): void {
+    this.http
+      .get(this.url,
+        {headers}
+      )
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        });
+  }
+
+  post(headers: HttpHeaders): void {
+    this.http
+      .post(this.url, {},
+        {headers}
+      )
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        });
+  }
+
+  delete(headers: HttpHeaders): void {
+    this.http
+      .delete(this.url,
+        {headers}
+      )
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        });
+  }
+
+  put(headers: HttpHeaders): void {
+    this.http
+      .put(this.url, {},
+        {headers}
+      )
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        });
+  }
+
+  patch(headers: HttpHeaders): void {
+    this.http
+      .patch(this.url, {},
+        {headers}
+      )
+      .subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        });
   }
 }
