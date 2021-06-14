@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <form (ngSubmit)="submit()" #rForm="ngForm">
+    <span [ngStyle]="{cursor: 'pointer', backgroundColor: 'yellow'}" routerLink="/login">click for login</span>
+    <input type="text" placeholder="Username" [(ngModel)]="form.username" name="username"
+           autocomplete="off" required>
+    <input type="text" placeholder="Full name" [(ngModel)]="form.firstName" name="firstName"
+           autocomplete="off" required>
+    <input type="text" placeholder="Full name" [(ngModel)]="form.lastName" name="lastName"
+           autocomplete="off" required>
+    <input type="email" placeholder="E-mail" [(ngModel)]="form.email" name="email"
+           autocomplete="off" required>
+    <input type="password" placeholder="Password" [(ngModel)]="form.password" name="password"
+           autocomplete="new-password" required>
+    <button
+      type="submit"
+      [disabled]="rForm.invalid"
+    >
+      Зарегистрироваться</button>
+  </form>
+</div>

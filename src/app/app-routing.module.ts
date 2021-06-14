@@ -6,6 +6,7 @@ import {SearchComponent} from './pages/search/search.component';
 import {LoginComponent} from './pages/login/login.component';
 import {AuthGuard} from './guards/auth.guard';
 import {TestComponent} from './pages/test/test.component';
+import {RegisterComponent} from './pages/register/register.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/tracked', pathMatch: 'full'},
@@ -16,8 +17,8 @@ const routes: Routes = [
   },
   {path: 'settings', component: PageNotFoundComponent, canActivate: [AuthGuard], data: {title: 'Настройки'}},
   {path: 'login', component: LoginComponent, data: {title: 'Вход'}},
-  {path: 'register', component: PageNotFoundComponent, data: {title: 'Регистрация'}},
-  {path: 'landing', component: PageNotFoundComponent, data: {title: 'Лендинг'}},
+  {path: 'register', component: RegisterComponent, data: {title: 'Регистрация'}},
+  // {path: 'landing', component: PageNotFoundComponent, data: {title: 'Лендинг'}},
   {path: 'test', component: TestComponent, data: {title: 'TEST'}},
   {path: '**', component: PageNotFoundComponent, data: {title: 'Error'}},
 ];

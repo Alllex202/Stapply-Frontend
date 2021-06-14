@@ -37,6 +37,7 @@ import { SearchResultCardComponent } from './pages/search/search-results/search-
 import {MatChipsModule} from '@angular/material/chips';
 import { LoginComponent } from './pages/login/login.component';
 import { TestComponent } from './pages/test/test.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { TestComponent } from './pages/test/test.component';
     SearchResultCardComponent,
     LoginComponent,
     TestComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
