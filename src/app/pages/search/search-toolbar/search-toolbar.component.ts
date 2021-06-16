@@ -20,8 +20,12 @@ export class SearchToolbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // window.addEventListener('scroll', this.sharedService.toggleToolbarShadow);
-    window.addEventListener('scroll', () => this.isShadedBottom = this.sharedService.checkScroll());
+    window.addEventListener('scroll', () => {
+      const isShaded = this.sharedService.checkScroll();
+      if (this.isShadedBottom !== isShaded) {
+        this.isShadedBottom = isShaded;
+      }
+    });
   }
 
   onSearchClickEnter(): void {

@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {UrlsApi} from '../urls/api';
@@ -10,11 +10,25 @@ import {LocalStorageService} from './local-storage.service';
 export class AuthService {
 
   redirectUrl: string | null = null;
-  isLoggedIn = false;
+  private IsLoggedIn = false;
   user: any | null = null;
+  private isLoggedInChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient,
               private ls: LocalStorageService) {
+  }
+
+  set isLoggedIn(val: boolean) {
+    this.IsLoggedIn = val;
+    this.isLoggedInChanged.emit(val);
+  }
+
+  get isLoggedIn(): boolean {
+    return this.IsLoggedIn;
+  }
+
+  isLoggedInChangedEmitter(): EventEmitter<boolean> {
+    return this.isLoggedInChanged;
   }
 
   login(username: string, password: string): Observable<{ user: string, token: string }> {
