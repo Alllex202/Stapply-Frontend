@@ -12,7 +12,8 @@ import {NgOnDestroyService} from '../../../services/ng-on-destroy.service';
 @Component({
   selector: 'app-manual-addition-modal',
   templateUrl: './manual-addition-modal.component.html',
-  styleUrls: ['./manual-addition-modal.component.scss']
+  styleUrls: ['./manual-addition-modal.component.scss'],
+  providers: [NgOnDestroyService],
 })
 export class ManualAdditionModalComponent implements OnInit {
 

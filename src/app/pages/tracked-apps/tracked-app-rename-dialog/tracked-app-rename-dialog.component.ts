@@ -10,7 +10,8 @@ import {NgOnDestroyService} from '../../../services/ng-on-destroy.service';
 @Component({
   selector: 'app-tracked-app-rename-dialog',
   templateUrl: './tracked-app-rename-dialog.component.html',
-  styleUrls: ['./tracked-app-rename-dialog.component.scss']
+  styleUrls: ['./tracked-app-rename-dialog.component.scss'],
+  providers: [NgOnDestroyService],
 })
 export class TrackedAppRenameDialogComponent implements OnInit {
 

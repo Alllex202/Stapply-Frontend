@@ -9,7 +9,8 @@ import {NgOnDestroyService} from '../../../services/ng-on-destroy.service';
 @Component({
   selector: 'app-tracked-app-delete-dialog',
   templateUrl: './tracked-app-delete-dialog.component.html',
-  styleUrls: ['./tracked-app-delete-dialog.component.scss']
+  styleUrls: ['./tracked-app-delete-dialog.component.scss'],
+  providers: [NgOnDestroyService],
 })
 export class TrackedAppDeleteDialogComponent implements OnInit {
 

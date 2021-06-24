@@ -10,7 +10,8 @@ import {NgOnDestroyService} from '../../../../services/ng-on-destroy.service';
 @Component({
   selector: 'app-search-result-card',
   templateUrl: './search-result-card.component.html',
-  styleUrls: ['./search-result-card.component.scss']
+  styleUrls: ['./search-result-card.component.scss'],
+  providers: [NgOnDestroyService],
 })
 export class SearchResultCardComponent implements OnInit {
 

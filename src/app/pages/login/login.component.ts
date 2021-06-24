@@ -7,7 +7,8 @@ import {takeUntil} from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [NgOnDestroyService],
 })
 export class LoginComponent implements OnInit {
 

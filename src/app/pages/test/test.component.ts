@@ -8,7 +8,8 @@ import {takeUntil} from 'rxjs/operators';
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
-  styleUrls: ['./test.component.scss']
+  styleUrls: ['./test.component.scss'],
+  providers: [NgOnDestroyService],
 })
 export class TestComponent implements OnInit {
 

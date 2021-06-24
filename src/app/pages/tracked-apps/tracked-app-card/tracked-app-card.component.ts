@@ -11,7 +11,8 @@ import {NgOnDestroyService} from '../../../services/ng-on-destroy.service';
 @Component({
   selector: 'app-tracked-app-card',
   templateUrl: './tracked-app-card.component.html',
-  styleUrls: ['./tracked-app-card.component.scss']
+  styleUrls: ['./tracked-app-card.component.scss'],
+  providers: [NgOnDestroyService],
 })
 export class TrackedAppCardComponent implements OnInit {
 
