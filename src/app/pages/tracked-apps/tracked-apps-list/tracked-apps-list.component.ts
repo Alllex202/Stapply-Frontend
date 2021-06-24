@@ -4,6 +4,7 @@ import {ITrackedAppCard} from '../../../interfaces/interfaces';
 import {UrlsClient} from '../../../urls/client';
 import {takeUntil} from 'rxjs/operators';
 import {NgOnDestroyService} from '../../../services/ng-on-destroy.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tracked-apps-list',
@@ -23,17 +24,25 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit {
   constructor(
     private trackedAppsService: TrackedAppsService,
     @Self() private destroy$: NgOnDestroyService,
+    private snackbar: MatSnackBar,
   ) {
   }
 
   ngOnInit(): void {
     this.trackedAppsService.getTrackedApps()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(apps => {
-        this.trackedApps = apps;
-        this.isLoaded = true;
-        setTimeout(() => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
-      });
+      .subscribe(
+        apps => {
+          this.trackedApps = apps;
+          this.isLoaded = true;
+          setTimeout(() => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
+        },
+        error => {
+          this.snackbar.open('Не удалось загрузить список приложений :(', undefined, {
+            duration: 2000,
+          });
+          this.isLoaded = true;
+        });
 
     this.btnCardAdd = document.getElementById('cardAdd');
     this.calculateCols();
