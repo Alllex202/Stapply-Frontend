@@ -1,17 +1,18 @@
-import {Component, Input, OnDestroy, OnInit, Self} from '@angular/core';
+import {Component, Input, OnInit, Self} from '@angular/core';
 import {UrlsClient} from '../../../urls/client';
 import {SharedService} from '../../services/shared.service';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
-import {ReplaySubject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {NgOnDestroyService} from '../../../services/ng-on-destroy.service';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
+  providers: [NgOnDestroyService]
 })
-export class ToolbarComponent implements OnInit, OnDestroy {
+export class ToolbarComponent implements OnInit {
 
   @Input() title: string | undefined;
   isLoggedIn = false;
@@ -20,12 +21,12 @@ export class ToolbarComponent implements OnInit, OnDestroy {
   urlSetting = UrlsClient.Settings;
   isShadedBottom = false;
   counter = 0;
-  destroy$ = new ReplaySubject<any>(1);
 
   constructor(
     private sharedService: SharedService,
     private auth: AuthService,
     private router: Router,
+    @Self() private destroy$: NgOnDestroyService,
   ) {
   }
 
@@ -40,11 +41,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.auth.isLoggedInChangedEmitter()
       .pipe(takeUntil(this.destroy$))
       .subscribe(next => this.isLoggedIn = next);
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   menuOpened(): void {

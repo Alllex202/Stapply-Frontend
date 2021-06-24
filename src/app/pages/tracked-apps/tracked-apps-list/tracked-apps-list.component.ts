@@ -1,16 +1,17 @@
-import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, AfterViewInit, Self} from '@angular/core';
 import {TrackedAppsService} from '../../../services/tracked-apps.service';
 import {ITrackedAppCard} from '../../../interfaces/interfaces';
 import {UrlsClient} from '../../../urls/client';
-import {ReplaySubject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
+import {NgOnDestroyService} from '../../../services/ng-on-destroy.service';
 
 @Component({
   selector: 'app-tracked-apps-list',
   templateUrl: './tracked-apps-list.component.html',
-  styleUrls: ['./tracked-apps-list.component.scss']
+  styleUrls: ['./tracked-apps-list.component.scss'],
+  providers: [NgOnDestroyService],
 })
-export class TrackedAppsListComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TrackedAppsListComponent implements OnInit, AfterViewInit {
 
   urlSearch = UrlsClient.Search;
   trackedApps: Array<ITrackedAppCard> | undefined;
@@ -18,10 +19,10 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit, OnDestro
   cols = 0;
   btnCardAddMiniIsVisible: boolean | undefined;
   btnCardAdd: HTMLElement | null | undefined;
-  destroy$ = new ReplaySubject<any>(1);
 
   constructor(
-    public trackedAppsService: TrackedAppsService
+    private trackedAppsService: TrackedAppsService,
+    @Self() private destroy$: NgOnDestroyService,
   ) {
   }
 
@@ -43,11 +44,6 @@ export class TrackedAppsListComponent implements OnInit, AfterViewInit, OnDestro
     window.addEventListener('resize', () => this.calculateCols());
     window.addEventListener('scroll', () => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
     window.addEventListener('resize', () => this.btnCardAddMiniIsVisible = !this.checkVisibilityCardAddOnScreen());
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   calculateCols(): void {

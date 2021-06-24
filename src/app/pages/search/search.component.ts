@@ -1,31 +1,32 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit, Self} from '@angular/core';
 import {SearchService} from '../../services/search.service';
 import {ISearchAppCart} from '../../interfaces/interfaces';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {catchError, debounceTime, filter, switchMap, takeUntil} from 'rxjs/operators';
-import {Subject, of, ReplaySubject} from 'rxjs';
+import {catchError, debounceTime, switchMap, takeUntil} from 'rxjs/operators';
+import {Subject, of} from 'rxjs';
+import {NgOnDestroyService} from '../../services/ng-on-destroy.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class SearchComponent implements OnInit {
 
   isLoading = false;
   searchResult: Array<ISearchAppCart> = [];
   lastSearch = '';
   search$ = new Subject<string>();
-  destroy$ = new ReplaySubject<any>(1);
 
   constructor(
-    public searchService: SearchService,
-    private snackbar: MatSnackBar) {
+    private searchService: SearchService,
+    private snackbar: MatSnackBar,
+    @Self() private destroy$: NgOnDestroyService,
+  ) {
   }
 
   ngOnInit(): void {
     this.search$.pipe(
-      // filter((input: string) => input.length > 0 && input !== this.lastSearch),
       debounceTime(400),
       switchMap((input: string) => {
         this.isLoading = true;
@@ -48,11 +49,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
   search(input: string): void {
     if (input.length > 0 && input !== this.lastSearch) {
       this.searchResult = [];
@@ -65,13 +61,4 @@ export class SearchComponent implements OnInit, OnDestroy {
       duration: 2000,
     });
   }
-
-  // onTrackingApp(idApp: number): void {
-  //   this.searchResult = this.searchResult.map(app => {
-  //     if (app.id === idApp) {
-  //       app.isTracked = !app.isTracked;
-  //     }
-  //     return app;
-  //   });
-  // }
 }

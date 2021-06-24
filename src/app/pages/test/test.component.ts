@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Self} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from '../../services/auth.service';
 import {UrlsApi} from '../../urls/api';
+import {NgOnDestroyService} from '../../services/ng-on-destroy.service';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-test',
@@ -25,6 +27,7 @@ export class TestComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private auth: AuthService,
+    @Self() private destroy$: NgOnDestroyService,
   ) {
   }
 
@@ -45,6 +48,7 @@ export class TestComponent implements OnInit {
       .get(this.url,
         {headers}
       )
+      .pipe(takeUntil(this.destroy$))
       .subscribe(
         res => {
           console.log(res);
@@ -59,6 +63,7 @@ export class TestComponent implements OnInit {
       .post(this.url, {},
         {headers}
       )
+      .pipe(takeUntil(this.destroy$))
       .subscribe(
         res => {
           console.log(res);
@@ -73,6 +78,7 @@ export class TestComponent implements OnInit {
       .delete(this.url,
         {headers}
       )
+      .pipe(takeUntil(this.destroy$))
       .subscribe(
         res => {
           console.log(res);
@@ -87,6 +93,7 @@ export class TestComponent implements OnInit {
       .put(this.url, {},
         {headers}
       )
+      .pipe(takeUntil(this.destroy$))
       .subscribe(
         res => {
           console.log(res);
@@ -101,6 +108,7 @@ export class TestComponent implements OnInit {
       .patch(this.url, {},
         {headers}
       )
+      .pipe(takeUntil(this.destroy$))
       .subscribe(
         res => {
           console.log(res);

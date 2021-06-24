@@ -1,9 +1,11 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Self} from '@angular/core';
 import {ISearchAppCart} from '../../../../interfaces/interfaces';
 import {SearchService} from '../../../../services/search.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UrlsClient} from '../../../../urls/client';
+import {takeUntil} from 'rxjs/operators';
+import {NgOnDestroyService} from '../../../../services/ng-on-destroy.service';
 
 @Component({
   selector: 'app-search-result-card',
@@ -14,14 +16,14 @@ export class SearchResultCardComponent implements OnInit {
 
   @Input() appData: ISearchAppCart | undefined;
   @Input() isSkeleton: boolean | undefined;
-  // @Output() onTrackingApp = new EventEmitter<number>();
 
   isLoadingTrackingBtn = false;
 
   constructor(
     private searchService: SearchService,
     private router: Router,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    @Self() private destroy$: NgOnDestroyService,
   ) {
   }
 
@@ -38,6 +40,7 @@ export class SearchResultCardComponent implements OnInit {
         linkAppStore: this.appData?.linkAppStore,
         linkAppGallery: this.appData?.linkAppGallery,
       })
+        .pipe(takeUntil(this.destroy$))
         .subscribe(
           res => {
             this.snackbar.open(`“${this.appData?.name}“ добавлено в отслеживаемое`, undefined, {

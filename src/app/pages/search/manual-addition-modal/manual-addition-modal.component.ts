@@ -1,11 +1,13 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Component, OnInit, Self} from '@angular/core';
+import {MatDialogRef} from '@angular/material/dialog';
 import {INewApplication} from '../../../interfaces/interfaces';
 import {SearchService} from '../../../services/search.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UrlsClient} from '../../../urls/client';
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {takeUntil} from 'rxjs/operators';
+import {NgOnDestroyService} from '../../../services/ng-on-destroy.service';
 
 @Component({
   selector: 'app-manual-addition-modal',
@@ -34,6 +36,7 @@ export class ManualAdditionModalComponent implements OnInit {
     private router: Router,
     private snackbar: MatSnackBar,
     private formBuilder: FormBuilder,
+    @Self() private destroy$: NgOnDestroyService,
   ) {
   }
 
@@ -68,6 +71,7 @@ export class ManualAdditionModalComponent implements OnInit {
         linkAppStore: this.formNewApp.value.linkAppStore ?? '',
       };
       this.searchService.addNewAppOnTracking(newApp)
+        .pipe(takeUntil(this.destroy$))
         .subscribe(
           res => {
             this.snackbar.open(`“${newApp.name}“ добавлено в отслеживаемое`, undefined, {

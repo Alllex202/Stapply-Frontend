@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Self} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {NgOnDestroyService} from '../../services/ng-on-destroy.service';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private router: Router,
+    @Self() private destroy$: NgOnDestroyService,
   ) {
   }
 
@@ -23,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     this.auth.login(this.username, this.password)
+      .pipe(takeUntil(this.destroy$))
       .subscribe(
         res => {
           // console.log(res, this.auth.redirectUrl);

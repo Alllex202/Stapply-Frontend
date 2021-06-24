@@ -1,10 +1,12 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter, Self} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {TrackedAppDeleteDialogComponent} from '../tracked-app-delete-dialog/tracked-app-delete-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {TrackedAppRenameDialogComponent} from '../tracked-app-rename-dialog/tracked-app-rename-dialog.component';
 import {ITrackedAppCard} from '../../../interfaces/interfaces';
 import {UrlsClient} from '../../../urls/client';
+import {takeUntil} from 'rxjs/operators';
+import {NgOnDestroyService} from '../../../services/ng-on-destroy.service';
 
 @Component({
   selector: 'app-tracked-app-card',
@@ -22,8 +24,10 @@ export class TrackedAppCardComponent implements OnInit {
   menuIsOpen = false;
 
   constructor(
-    public dialog: MatDialog,
-    private SnackBar: MatSnackBar) {
+    private dialog: MatDialog,
+    private SnackBar: MatSnackBar,
+    @Self() private destroy$: NgOnDestroyService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -38,14 +42,16 @@ export class TrackedAppCardComponent implements OnInit {
       disableClose: true,
     });
 
-    deleteDialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.deleteCard.emit(this.appData?.id);
-        this.SnackBar.open(`Приложение “${this.appData?.name}“ удалено`, undefined, {
-          duration: 2000,
-        });
-      }
-    });
+    deleteDialogRef.afterClosed()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => {
+        if (result) {
+          this.deleteCard.emit(this.appData?.id);
+          this.SnackBar.open(`Приложение “${this.appData?.name}“ удалено`, undefined, {
+            duration: 2000,
+          });
+        }
+      });
   }
 
   openRenameDialog(): void {
@@ -56,15 +62,17 @@ export class TrackedAppCardComponent implements OnInit {
       disableClose: true,
     });
 
-    renameDialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const oldName = this.appData?.name;
-        this.renameCard.emit({newName: result, idApp: this.appData?.id});
-        this.SnackBar.open(`“${oldName}“ переименован в “${result}“`, undefined, {
-          duration: 1500,
-        });
-      }
-    });
+    renameDialogRef.afterClosed()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(result => {
+        if (result) {
+          const oldName = this.appData?.name;
+          this.renameCard.emit({newName: result, idApp: this.appData?.id});
+          this.SnackBar.open(`“${oldName}“ переименован в “${result}“`, undefined, {
+            duration: 1500,
+          });
+        }
+      });
   }
 
   menuOpened(): void {

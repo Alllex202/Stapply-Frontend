@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Component, OnInit, Self} from '@angular/core';
 import {RegisterService} from '../../services/register.service';
 import {Router} from '@angular/router';
+import {NgOnDestroyService} from '../../services/ng-on-destroy.service';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +22,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private registerService: RegisterService,
     private router: Router,
+    @Self() private destroy$: NgOnDestroyService,
   ) {
   }
 
@@ -30,6 +32,7 @@ export class RegisterComponent implements OnInit {
   submit(): void {
     this.registerService.register(this.form.email, this.form.username, this.form.firstName,
       this.form.lastName, this.form.password)
+      .pipe(takeUntil(this.destroy$))
       .subscribe(
         res => {
           console.log('RESPONSE', res);
